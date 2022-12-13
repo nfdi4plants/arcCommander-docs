@@ -1,0 +1,1607 @@
+<html class="has-navbar-fixed-top" style="scroll-behavior: smooth;">
+  <head>
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+      
+    </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" type="text/css" href="/style/style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
+    <script type="module" src="/web-components-docs/js/bundle.js"></script>
+    <style>
+      
+                    body {
+                        margin: 0px;
+                    }
+
+                    thead tr th, strong {
+                        color: var(--accent-text-color) !important
+                    }
+
+                    a {
+                        color: var(--link-color, #4FB3D9) !important;
+                    }
+
+                    a:hover {
+                        color: var(--link-hover-color, #3A3A3A) !important;
+                    }
+                    
+                    thead {
+                        font-size: 1rem;
+                    }
+
+                    table {
+                        display: block;
+                        overflow: scroll
+                    }
+
+                    nfdi-toc, nfdi-body {
+                        --outside-background-color: rgb(240, 243, 246);
+                        --header-color: rgb(10, 12, 16)
+                        --element-text-color: #0E1116;
+                        --element-background-color: #fff;
+                        --accent-text-color: rgb(31, 194, 167);
+                        --link-color: #4FB3D9;
+                        --link-hover-color: #8ad3ee;
+                    }
+
+                
+    </style>
+  </head>
+  <nfdi-navbar></nfdi-navbar>
+  <body>
+    <nfdi-body class="content" hasSidebar="true">
+      <nfdi-sidebar-element slot="sidebar" isActive="true">
+        <div slot="title">
+          ARC Commander Dev Docs
+        </div>
+        <h1 slot="inner" href="/arcCommander-docs/docs/index.html">Home</h1>
+<h1 slot="inner" href="/arcCommander-docs/docs/detailedUsageInstruction.html">Detailed Usage Instruction</h1>
+
+      </nfdi-sidebar-element>
+      <h1 class="front-header">
+        Metadata
+      </h1>
+      <i class="help">
+        last updated at 2022-12-13
+      </i>
+      <nfdi-toc></nfdi-toc>
+      <nfdi-h3 id="general-cli-structure">General cli structure</nfdi-h3>
+<p>The general command line structure is designed as either</p>
+<nfdi-code class="language-powershell">arc &lt;top-level-command> &lt;top-level-command-args>
+</nfdi-code>
+<p>e.g.</p>
+<nfdi-code class="language-powershell">arc init
+</nfdi-code>
+<p>or</p>
+<nfdi-code class="language-powershell">arc &lt;object> &lt;subcommand-verb> &lt;subcommand-verb-args>
+</nfdi-code>
+<p>where <code>&lt;object&gt;</code> is one of the following:</p>
+<ul>
+<li><code>assay</code></li>
+<li><code>study</code>  or its sub-objects</li>
+<li><code>investigation</code> or its sub-objects</li>
+<li><code>configuration</code></li>
+</ul>
+<p>and <code>&lt;subcommand-verb&gt;</code> models what to do with the object, e.g</p>
+<nfdi-code class="language-powershell">arc study init
+</nfdi-code>
+<p>will initialize a new empty study in the ARC.</p>
+<nfdi-h3 id="subcommand-verbs">Subcommand verbs</nfdi-h3>
+<p>while not all object subcommands support all verbs, here is a list of the verbs and what to expect when they are applicable for an <code>&lt;object&gt;</code>:</p>
+<ul>
+<li>arc <code>&lt;object&gt;</code> <strong>init</strong> : will initialize a new empty <code>&lt;object&gt;</code> in the ARC.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>create</strong> will create a new <code>&lt;object&gt;</code> with the passed arguments in the ARC.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>update</strong> will update the registration of an existing <code>&lt;object&gt;</code> with the passed arguments.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>edit</strong> will open an existing <code>&lt;object&gt;</code> with a text editor, allowing editing the registration of the <code>&lt;object&gt;</code>.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>register</strong> will register an existing <code>&lt;object&gt;</code> in the ARC with the passed arguments.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>add</strong> is the combination of create/init+update and register, meaning it will create a new <code>&lt;object&gt;</code> in the ARC and subsequently register it with the passed arguments</li>
+<li>arc <code>&lt;object&gt;</code> <strong>delete</strong> will delete the <code>&lt;object&gt;</code> from the arc file structure.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>unregister</strong> will remove the <code>&lt;object&gt;</code> from the ARC's register.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>remove</strong> is the combination of delete and unregister, meaning it will delete the <code>&lt;object&gt;</code> from the ARC file structure and the ARC's registry</li>
+<li>arc <code>&lt;object&gt;</code> <strong>move</strong> will move the <code>&lt;object&gt;</code> from source to target register.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>list</strong> will print all <code>&lt;object&gt;s</code> registered in the ARC.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>set</strong> will set a single value in the <code>&lt;object&gt;</code>.</li>
+<li>arc <code>&lt;object&gt;</code> <strong>unset</strong> will remove a single value from the <code>&lt;object&gt;</code>.</li>
+</ul>
+<nfdi-h3 id="cli-argument-help">CLI argument help</nfdi-h3>
+<p>Here is the current help dump from the command line tool:</p>
+<nfdi-h4 id="top-level">Top level:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc [--help] [--workingdir &lt;working directory>] [--verbosity &lt;verbosity>]
+                        [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    init &lt;init args>      Initializes basic folder structure
+    investigation, i &lt;verb and args>
+                          Investigation file functions
+    study, s &lt;verb and args>
+                          Study functions
+    assay, a &lt;verb and args>
+                          Assay functions
+    configuration, config &lt;verb and args>
+                          Configuration editing
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --workingdir, -p &lt;working directory>
+                          Set the base directory of your ARC
+    --verbosity, -v &lt;verbosity>
+                          Sets the amount of additional printed information: 0->No information, 1 (Default) -> Basic
+                          Information, 2 -> Additional information
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h4 id="init">init:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc init [--help] [--owner &lt;owner>] [--repositoryadress &lt;repository adress>] [--editorpath &lt;editor path>]
+
+OPTIONS:
+
+    --owner &lt;owner>       Owner of the arc
+    --repositoryadress &lt;repository adress>
+                          Github adress
+    --editorpath &lt;editor path>
+                          The path leading to the editor used for text prompts (Default in Windows is notepad)
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h4 id="investigation">investigation:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc.exe investigation [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    create &lt;create args>  Create a new investigation with the given Metadata
+    update &lt;update args>  Update the ARC's investigation with the given Metdadata
+    edit                  Open an editor window to directly edit the ARC's investigation file
+    delete &lt;delete args>  Delete the ARC's investigation file (DANGER ZONE!)
+    person &lt;person verbs> Person functions
+    publication &lt;publication verbs>
+                          Publication functions
+    show                  Get the values of the ARC's investigation
+
+    Use 'arc.exe &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-create">investigation create</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation create [--help] --identifier &lt;investigation identifier> [--title &lt;title>]
+                                             [--description &lt;description>] [--submissiondate &lt;submission date>]
+                                             [--publicreleasedate &lt;public release date>]
+
+OPTIONS:
+
+    --identifier &lt;investigation identifier>
+                          A identifier or an accession number provided by a repository. This SHOULD be locally unique.
+    --title &lt;title>       A concise name given to the investigation.
+    --description &lt;description>
+                          A textual description of the investigation.
+    --submissiondate &lt;submission date>
+                          The date on which the investigation was reported to the repository.
+    --publicreleasedate &lt;public release date>
+                          The date on which the investigation was released publicly.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-update">investigation update</nfdi-h5>
+<p>Give new metadata that overwrite the current metadata of an investigation.</p>
+<nfdi-code class="language-powershell">USAGE: arc investigation update [--help] --identifier &lt;investigation identifier> [--title &lt;title>]
+                                             [--description &lt;description>] [--submissiondate &lt;submission date>]
+                                             [--publicreleasedate &lt;public release date>]
+
+OPTIONS:
+
+    --identifier &lt;investigation identifier>
+                          A identifier or an accession number provided by a repository. This SHOULD be locally unique.
+    --title &lt;title>       A concise name given to the investigation.
+    --description &lt;description>
+                          A textual description of the investigation.
+    --submissiondate &lt;submission date>
+                          The date on which the investigation was reported to the repository.
+    --publicreleasedate &lt;public release date>
+                          The date on which the investigation was released publicly.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-edit">investigation edit</nfdi-h5>
+<p>Take the current metadata of an investigation and change it.<br />
+(While <code>investigation edit</code> opens the current metadata that can be altered by the user, <code>investigation update</code> will take a new set of metadata and overwrites the existing one)</p>
+<nfdi-code class="language-powershell">USAGE: arc investigation edit [--help]
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+
+</nfdi-code>
+<nfdi-h5 id="investigation-delete">investigation delete</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation delete [--help] --identifier &lt;investigation identifier>
+
+OPTIONS:
+
+    --identifier &lt;investigation identifier>
+                          DangerZone: In order to delete this investigation file please provide its identifier here.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="investigation-person">investigation person</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation person [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing person in the arc investigation with the given person metadata. The person is
+                          identified by the full name (first name, last name, mid initials)
+    edit &lt;edit args>      Open and edit an existing person in the arc investigation with a text editor. The person is
+                          identified by the full name (first name, last name, mid initials)
+    register &lt;register args>
+                          Register a person in the arc investigation with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a person from the given investigation. The person is identified by the full name (first
+                          name, last name, mid initials).
+    show &lt;show args>      Show the metadata of a person registered in the arc investigation
+    list                  List all persons registered in the arc investigation
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-person-update">investigation person update</nfdi-h5>
+<nfdi-code class="language-powershell">OPTIONS:
+
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the investigation.
+    --email &lt;e mail>      The email address of a person associated with the investigation.
+    --phone &lt;phone number>
+                          The telephone number of a person associated with the investigation.
+    --fax &lt;fax number>    The fax number of a person associated with the investigation.
+    --address &lt;adress>    The address of a person associated with the investigation.
+    --affiliation &lt;affiliation>
+                          The organization affiliation for a person associated with the investigation.
+    --roles &lt;roles>       Term to classify the role(s) performed by this person in the context of the investigation, which
+                          means that the roles reported here need not correspond to roles held withing their affiliated
+                          organization. Multiple annotations or values attached to one person can be provided by using a
+                          semicolon (";") Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor). The term can be
+                          free text or from, for example, a controlled vocabulary or an ontology. If the latter source is used
+                          the Term Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber &lt;roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref &lt;roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-person-edit">investigation person edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation person edit [--help] --lastname &lt;last name> --firstname &lt;first name>
+                                                  [--midinitials &lt;mid initials>]
+
+OPTIONS:
+
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the investigation.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-person-register">investigation person register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation person register [--help] --lastname &lt;last name> --firstname &lt;first name>
+                                                      [--midinitials &lt;mid initials>] [--email &lt;e mail>]
+                                                      [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
+                                                      [--affiliation &lt;affiliation>] [--roles &lt;roles>]
+                                                      [--rolestermaccessionnumber &lt;roles term accession number>]
+                                                      [--rolestermsourceref &lt;roles term source ref>]
+
+OPTIONS:
+
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the investigation.
+    --email &lt;e mail>      The email address of a person associated with the investigation.
+    --phone &lt;phone number>
+                          The telephone number of a person associated with the investigation.
+    --fax &lt;fax number>    The fax number of a person associated with the investigation.
+    --address &lt;adress>    The address of a person associated with the investigation.
+    --affiliation &lt;affiliation>
+                          The organization affiliation for a person associated with the investigation.
+    --roles &lt;roles>       Term to classify the role(s) performed by this person in the context of the investigation, which
+                          means that the roles reported here need not correspond to roles held withing their affiliated
+                          organization. Multiple annotations or values attached to one person can be provided by using a
+                          semicolon (";") Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor). The term can be
+                          free text or from, for example, a controlled vocabulary or an ontology. If the latter source is used
+                          the Term Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber &lt;roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref &lt;roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-person-unregister">investigation person unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation person register [--help] --lastname &lt;last name> --firstname &lt;first name>
+                                                      [--midinitials &lt;mid initials>] [--email &lt;e mail>]
+                                                      [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
+                                                      [--affiliation &lt;affiliation>] [--roles &lt;roles>]
+                                                      [--rolestermaccessionnumber &lt;roles term accession number>]
+                                                      [--rolestermsourceref &lt;roles term source ref>]
+
+OPTIONS:
+
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the investigation.
+    --email &lt;e mail>      The email address of a person associated with the investigation.
+    --phone &lt;phone number>
+                          The telephone number of a person associated with the investigation.
+    --fax &lt;fax number>    The fax number of a person associated with the investigation.
+    --address &lt;adress>    The address of a person associated with the investigation.
+    --affiliation &lt;affiliation>
+                          The organization affiliation for a person associated with the investigation.
+    --roles &lt;roles>       Term to classify the role(s) performed by this person in the context of the investigation, which
+                          means that the roles reported here need not correspond to roles held withing their affiliated
+                          organization. Multiple annotations or values attached to one person can be provided by using a
+                          semicolon (";") Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor). The term can be
+                          free text or from, for example, a controlled vocabulary or an ontology. If the latter source is used
+                          the Term Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber &lt;roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref &lt;roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="investigation-person-show">investigation person show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation person show [--help] --lastname &lt;last name> --firstname &lt;first name>
+                                                 [--midinitials &lt;mid initials>]
+
+OPTIONS:
+
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the investigation.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="investigation-publication">investigation publication</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing publication in the arc investigation with the given publication metadata. The
+                          publication is identified by the doi
+    edit &lt;edit args>      Open and edit an existing publication in the arc investigation with a text editor. The publication
+                          is identified by the doi
+    register &lt;register args>
+                          Register a publication in the arc investigation with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a publication from the given investigation. The publication is identified by the doi
+    show &lt;show args>      Show the metadata of a publication registered in the arc investigation
+    list                  List all publication registered in the arc investigation
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.    
+</nfdi-code>
+<nfdi-h5 id="investigation-publication-update">investigation publication update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication update [--help] --doi &lt;doi> [--pubmedid &lt;pubmed id>]
+                                                         [--authorlist &lt;author list>] [--title &lt;publication title>]
+                                                         [--status &lt;publication status>]
+                                                         [--statustermaccessionnumber &lt;publication status term accession number>]
+                                                         [--statustermsourceref &lt;publication status term source ref>]
+
+OPTIONS:
+
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --pubmedid, -p &lt;pubmed id>
+                          The PubMed IDs of the described publication(s) associated with this investigation.
+    --authorlist &lt;author list>
+                          The list of authors associated with that publication.
+    --title &lt;publication title>
+                          The title of publication associated with the investigation.
+    --status &lt;publication status>
+                          A term describing the status of that publication (i.e. submitted, in preparation, published).
+    --statustermaccessionnumber &lt;publication status term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --statustermsourceref &lt;publication status term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one the Term Source Name declared in the in the Ontology Source Reference section.
+    --help                display this list of options.    
+</nfdi-code>
+<nfdi-h5 id="investigation-publication-edit">investigation publication edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication edit [--help] --doi &lt;doi>
+
+OPTIONS:
+
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.    
+</nfdi-code>
+<nfdi-h5 id="investigation-publication-register">investigation publication register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication register [--help] --doi &lt;doi> [--pubmedid &lt;pubmed id>]
+                                                           [--authorlist &lt;author list>] [--title &lt;publication title>]
+                                                           [--status &lt;publication status>]
+                                                           [--statustermaccessionnumber &lt;publication status term accession number>]
+                                                           [--statustermsourceref &lt;publication status term source ref>]
+
+OPTIONS:
+
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --pubmedid, -p &lt;pubmed id>
+                          The PubMed IDs of the described publication(s) associated with this investigation.
+    --authorlist &lt;author list>
+                          The list of authors associated with that publication.
+    --title &lt;publication title>
+                          The title of publication associated with the investigation.
+    --status &lt;publication status>
+                          A term describing the status of that publication (i.e. submitted, in preparation, published).
+    --statustermaccessionnumber &lt;publication status term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --statustermsourceref &lt;publication status term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one the Term Source Name declared in the in the Ontology Source Reference section.
+    --help                display this list of options.    
+</nfdi-code>
+<nfdi-h5 id="investigation-publication-unregister">investigation publication unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication unregister [--help] --doi &lt;doi>
+
+OPTIONS:
+
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.    
+</nfdi-code>
+<nfdi-h5 id="investigation-publication-show">investigation publication show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc investigation publication show [--help] --doi &lt;doi>
+
+OPTIONS:
+
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.    
+</nfdi-code>
+<br>
+<nfdi-h4 id="study">study:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc study [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    init &lt;init args>      Initialize a new empty study file in the arc
+    register &lt;register args>
+                          Register an existing study in the arc with the given assay metadata.
+    add &lt;add args>        Create a new study file in the arc and subsequently register it with the given study metadata
+    delete &lt;delete args>  Delete a study from the arc file structure
+    unregister &lt;unregister args>
+                          Unregister a study from the arc investigation file
+    remove &lt;remove args>  Remove a study from the arc
+    update &lt;update args>  Update an existing study in the arc with the given study metadata
+    edit &lt;edit args>      Open and edit an existing study in the arc with a text editor. Arguments passed for this command
+                          will be pre-set in the editor.
+    show &lt;show args>      Show the values of a study
+    list                  List all studies registered in the arc
+    person &lt;person verbs> Person functions
+    publication &lt;publication verbs>
+                          Publication functions
+    design &lt;design verbs> Design functions
+    factor &lt;factor verbs> Factor functions
+    protocol &lt;protocol verbs>
+                          Protocol functions
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-init">study init</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study init [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-register">study register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study register [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
+                                       [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --title &lt;title>       A concise phrase used to encapsulate the purpose and goal of the study.
+    --description &lt;description>
+                          A textual description of the study, with components such as objective or goals.
+    --submissiondate &lt;submission date>
+                          The date on which the study is submitted to an archive.
+    --publicreleasedate &lt;public release date>
+                          The date on which the study SHOULD be released publicly.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-add">study add</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study add [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
+                                  [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --title &lt;title>       A concise phrase used to encapsulate the purpose and goal of the study.
+    --description &lt;description>
+                          A textual description of the study, with components such as objective or goals.
+    --submissiondate &lt;submission date>
+                          The date on which the study is submitted to an archive.
+    --publicreleasedate &lt;public release date>
+                          The date on which the study SHOULD be released publicly.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-delete">study delete</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study delete [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-unregister">study unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study unregister [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-remove">study remove</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study remove [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-update">study update</nfdi-h5>
+<p>Give new metadata that overwrite the current metadata of a study.</p>
+<nfdi-code class="language-powershell">USAGE: arc study update [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
+                                     [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --title &lt;title>       A concise phrase used to encapsulate the purpose and goal of the study.
+    --description &lt;description>
+                          A textual description of the study, with components such as objective or goals.
+    --submissiondate &lt;submission date>
+                          The date on which the study is submitted to an archive.
+    --publicreleasedate &lt;public release date>
+                          The date on which the study SHOULD be released publicly.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-edit">study edit</nfdi-h5>
+<p>Take the current metadata of a study and change it.<br />
+(While <code>study edit</code> opens the current metadata that can be altered by the user, <code>study update</code> will take a new set of metadata and overwrites the existing one)</p>
+<nfdi-code class="language-powershell">USAGE: arc study edit [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+
+</nfdi-code>
+<nfdi-h5 id="study-show">study show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study show [--help] --identifier &lt;study identifier>
+
+OPTIONS:
+
+    --identifier &lt;study identifier>
+                          A unique identifier, either a temporary identifier supplied by users or one generated by a
+                          repository or other database. For example, it could be an identifier complying with the LSID
+                          specification.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="study-person">study person</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing person in the arc investigation study with the given person metadata. The person
+                          is identified by the full name (first name, last name, mid initials)
+    edit &lt;edit args>      Open and edit an existing person in the arc investigation study with a text editor. The person is
+                          identified by the full name (first name, last name, mid initials)
+    register &lt;register args>
+                          Register a person in the arc investigation study with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a person from the given investigation study. The person is identified by the full name
+                          (first name, last name, mid initials).
+    show &lt;show args>      Show the metadata of a person registered in the arc investigation study
+    list                  List all persons registered in the arc investigation
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-person-update">study person update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person update [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
+                                            [--midinitials &lt;mid initials>] [--email &lt;e mail>] [--phone &lt;phone number>]
+                                            [--fax &lt;fax number>] [--address &lt;adress>] [--affiliation &lt;affiliation>]
+                                            [--roles &lt;roles>] [--rolestermaccessionnumber &lt;roles term accession number>]
+                                            [--rolestermsourceref &lt;roles term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the person is associated with
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the study.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the study.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the study.
+    --email &lt;e mail>      The email address of a person associated with the study.
+    --phone &lt;phone number>
+                          The telephone number of a person associated with the study.
+    --fax &lt;fax number>    The fax number of a person associated with the study.
+    --address &lt;adress>    The address of a person associated with the study.
+    --affiliation &lt;affiliation>
+                          The organization affiliation for a person associated with the study.
+    --roles &lt;roles>       Term to classify the role(s) performed by this person in the context of the study, which means that
+                          the roles reported here need not correspond to roles held withing their affiliated organization.
+                          Multiple annotations or values attached to one person can be provided by using a semicolon (";")
+                          Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor) .The term can be free text or
+                          from, for example, a controlled vocabulary or an ontology. If the latter source is used the Term
+                          Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber &lt;roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref &lt;roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-person-edit">study person edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person edit [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
+                                          [--midinitials &lt;mid initials>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the person is associated with
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the study.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the study.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the study.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-person-register">study person register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person register [--help] --studyidentifier &lt;string> --lastname &lt;last name>
+                                              --firstname &lt;first name> [--midinitials &lt;mid initials>] [--email &lt;e mail>]
+                                              [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
+                                              [--affiliation &lt;affiliation>] [--roles &lt;roles>]
+                                              [--rolestermaccessionnumber &lt;roles term accession number>]
+                                              [--rolestermsourceref &lt;roles term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the person is associated with
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the study.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the study.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the study.
+    --email &lt;e mail>      The email address of a person associated with the study.
+    --phone &lt;phone number>
+                          The telephone number of a person associated with the study.
+    --fax &lt;fax number>    The fax number of a person associated with the study.
+    --address &lt;adress>    The address of a person associated with the study.
+    --affiliation &lt;affiliation>
+                          The organization affiliation for a person associated with the study.
+    --roles &lt;roles>       Term to classify the role(s) performed by this person in the context of the study, which means that
+                          the roles reported here need not correspond to roles held withing their affiliated organization.
+                          Multiple annotations or values attached to one person can be provided by using a semicolon (";")
+                          Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor) .The term can be free text or
+                          from, for example, a controlled vocabulary or an ontology. If the latter source is used the Term
+                          Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber &lt;roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref &lt;roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-person-unregister">study person unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person unregister [--help] --studyidentifier &lt;string> --lastname &lt;last name>
+                                                --firstname &lt;first name> [--midinitials &lt;mid initials>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the person is associated with
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the study.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the study.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the study.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-person-show">study person show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study person show [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
+                                         [--midinitials &lt;mid initials>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the person is associated with
+    --lastname, -l &lt;last name>
+                          The last name of a person associated with the study.
+    --firstname, -f &lt;first name>
+                          The first name of a person associated with the study.
+    --midinitials, -m &lt;mid initials>
+                          The middle initials of a person associated with the study.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="study-publication">study publication</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing publication in the arc investigation study with the given publication metadata.
+                          The publication is identified by the doi
+    edit &lt;edit args>      Open and edit an existing publication in the arc investigation study with a text editor. The
+                          publication is identified by the doi
+    register &lt;register args>
+                          Register a publication in the arc investigation study with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a publication from the given investigation study. The publication is identified by the doi
+    show &lt;show args>      Show the metadata of a publication registered in the arc investigation study
+    list                  List all publication registered in the arc investigation study
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-publication-update">study publication update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication update [--help] --studyidentifier &lt;string> --doi &lt;doi> [--pubmedid &lt;pubmed id>]
+                                                 [--authorlist &lt;author list>] [--title &lt;publication title>]
+                                                 [--status &lt;publication status>]
+                                                 [--statustermaccessionnumber &lt;publication status term accession number>]
+                                                 [--statustermsourceref &lt;publication status term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the publication is associated with
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --pubmedid, -p &lt;pubmed id>
+                          The PubMed IDs of the described publication(s) associated with this study.
+    --authorlist &lt;author list>
+                          The list of authors associated with that publication.
+    --title &lt;publication title>
+                          The title of publication associated with the study.
+    --status &lt;publication status>
+                          A term describing the status of that publication (i.e. submitted, in preparation, published).
+    --statustermaccessionnumber &lt;publication status term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --statustermsourceref &lt;publication status term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one the Term Source Name declared in the in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-publication-edit">study publication edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication edit [--help] --studyidentifier &lt;string> --doi &lt;doi>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the publication is associated with
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-publication-register">study publication register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication register [--help] --studyidentifier &lt;string> --doi &lt;doi> [--pubmedid &lt;pubmed id>]
+                                                   [--authorlist &lt;author list>] [--title &lt;publication title>]
+                                                   [--status &lt;publication status>]
+                                                   [--statustermaccessionnumber &lt;publication status term accession number>]
+                                                   [--statustermsourceref &lt;publication status term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the publication is associated with
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --pubmedid, -p &lt;pubmed id>
+                          The PubMed IDs of the described publication(s) associated with this study.
+    --authorlist &lt;author list>
+                          The list of authors associated with that publication.
+    --title &lt;publication title>
+                          The title of publication associated with the study.
+    --status &lt;publication status>
+                          A term describing the status of that publication (i.e. submitted, in preparation, published).
+    --statustermaccessionnumber &lt;publication status term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --statustermsourceref &lt;publication status term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one the Term Source Name declared in the in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-publication-unregister">study publication unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication unregister [--help] --studyidentifier &lt;string> --doi &lt;doi>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the publication is associated with
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-publication-show">study publication show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study publication show [--help] --studyidentifier &lt;string> --doi &lt;doi>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the publication is associated with
+    --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="study-design">study design</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing design in the arc investigation study with the given publication metadata. The
+                          publication is identified by the design type
+    edit &lt;edit args>      Open and edit an existing design in the arc investigation study with a text editor. The publication
+                          is identified by the design type
+    register &lt;register args>
+                          Register a design in the arc investigation study with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a design from the given investigation study. The publication is identified by the design
+                          type
+    show &lt;show args>      Show the metadata of a design registered in the arc investigation study
+    list                  List all design registered in the arc investigation study
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-design-update">study design update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design update [--help] --studyidentifier &lt;string> --designtype &lt;design type>
+                                            [--typetermaccessionnumber &lt;type term accession number>]
+                                            [--typetermsourceref &lt;type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --designtype, -d &lt;design type>
+                          A term allowing the classification of the study based on the overall experimental design, e.g
+                          cross-over design or parallel group design. The term can be free text or from, for example, a
+                          controlled vocabulary or an ontology. If the latter source is used the Term Accession Number and
+                          Term Source REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Study Design Term
+                          Source REF has to match one the Term Source Name declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-design-edit">study design edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design edit [--help] --studyidentifier &lt;string> --designtype &lt;design type>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --designtype, -d &lt;design type>
+                          A term allowing the classification of the study based on the overall experimental design, e.g
+                          cross-over design or parallel group design. The term can be free text or from, for example, a
+                          controlled vocabulary or an ontology. If the latter source is used the Term Accession Number and
+                          Term Source REF fields below are required.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-design-register">study design register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design register [--help] --studyidentifier &lt;string> --designtype &lt;design type>
+                                              [--typetermaccessionnumber &lt;type term accession number>]
+                                              [--typetermsourceref &lt;type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --designtype, -d &lt;design type>
+                          A term allowing the classification of the study based on the overall experimental design, e.g
+                          cross-over design or parallel group design. The term can be free text or from, for example, a
+                          controlled vocabulary or an ontology. If the latter source is used the Term Accession Number and
+                          Term Source REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Study Design Term
+                          Source REF has to match one the Term Source Name declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-design-unregister">study design unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design unregister [--help] --studyidentifier &lt;string> --designtype &lt;design type>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --designtype, -d &lt;design type>
+                          A term allowing the classification of the study based on the overall experimental design, e.g
+                          cross-over design or parallel group design. The term can be free text or from, for example, a
+                          controlled vocabulary or an ontology. If the latter source is used the Term Accession Number and
+                          Term Source REF fields below are required.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-design-show">study design show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study design show [--help] --studyidentifier &lt;string> --designtype &lt;design type>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --designtype, -d &lt;design type>
+                          A term allowing the classification of the study based on the overall experimental design, e.g
+                          cross-over design or parallel group design. The term can be free text or from, for example, a
+                          controlled vocabulary or an ontology. If the latter source is used the Term Accession Number and
+                          Term Source REF fields below are required.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="study-factor">study factor</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing factor in the arc investigation study with the given publication metadata. The
+                          publication is identified by name
+    edit &lt;edit args>      Open and edit an existing factor in the arc investigation study with a text editor. The publication
+                          is identified by name
+    register &lt;register args>
+                          Register a factor in the arc investigation study with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a factor from the given investigation study. The publication is identified by name
+    show &lt;show args>      Show the metadata of a factor registered in the arc investigation study
+    list                  List all factor registered in the arc investigation study
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-factor-update">study factor update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor update [--help] --studyidentifier &lt;string> --name &lt;name> [--factortype &lt;factor type>]
+                                            [--typetermaccessionnumber &lt;type term accession number>]
+                                            [--typetermsourceref &lt;type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --factortype &lt;factor type>
+                          A term allowing the classification of this factor into categories. The term can be free text or
+                          from, for example, a controlled vocabulary or an ontology. If the latter source is used the Term
+                          Accession Number and Term Source REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-factor-edit">study factor edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor edit [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-factor-register">study factor register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor register [--help] --studyidentifier &lt;string> --name &lt;name> [--factortype &lt;factor type>]
+                                              [--typetermaccessionnumber &lt;type term accession number>]
+                                              [--typetermsourceref &lt;type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --factortype &lt;factor type>
+                          A term allowing the classification of this factor into categories. The term can be free text or
+                          from, for example, a controlled vocabulary or an ontology. If the latter source is used the Term
+                          Accession Number and Term Source REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-factor-unregister">study factor unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor unregister [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-factor-show">study factor show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study factor show [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h5 id="study-protocol">study protocol</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    update &lt;update args>  Update an existing protocol in the arc investigation study with the given publication metadata. The
+                          publication is identified by name
+    edit &lt;edit args>      Open and edit an existing protocol in the arc investigation study with a text editor. The
+                          publication is identified by name
+    register &lt;register args>
+                          Register a protocol in the arc investigation study with the given assay metadata.
+    unregister &lt;remove args>
+                          Unregister a protocol from the given investigation study. The publication is identified by name
+    show &lt;show args>      Show the metadata of a protocol registered in the arc investigation study
+    list                  List all protocol registered in the arc investigation study
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-protocol-update">study protocol update</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol update [--help] --studyidentifier &lt;string> --name &lt;name>
+                                              [--protocoltype &lt;protocol type>]
+                                              [--typetermaccessionnumber &lt;type term accession number>]
+                                              [--typetermsourceref &lt;type term source ref>] [--description &lt;description>]
+                                              [--uri &lt;uri>] [--version &lt;version>] [--parametersname &lt;parameters name>]
+                                              [--parameterstermaccessionnumber &lt;parameters term accession number>]
+                                              [--parameterstermsourceref &lt;parameters term source ref>]
+                                              [--componentsname &lt;compoments name>] [--componentstype &lt;compoments type>]
+                                              [--componentstypetermaccessionnumber &lt;compoments type accession number>]
+                                              [--componentstypetermsourceref &lt;compoments type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of the protocols used within the ISA-Tab document. The names are used as identifiers within
+                          the ISA-Tab document and will be referenced in the Study and Assay files in the Protocol REF
+                          columns. Names can be either local identifiers, unique within the ISA Archive which contains them,
+                          or fully qualified external accession numbers.
+    --protocoltype &lt;protocol type>
+                          Term to classify the protocol. The term can be free text or from, for example, a controlled
+                          vocabulary or an ontology. If the latter source is used the Term Accession Number and Term Source
+                          REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --description &lt;description>
+                          A free-text description of the protocol.
+    --uri &lt;uri>           Pointer to protocol resources external to the ISA-Tab that can be accessed by their Uniform Resource
+                          Identifier (URI).
+    --version &lt;version>   An identifier for the version to ensure protocol tracking.
+    --parametersname &lt;parameters name>
+                          A semicolon-delimited (";") list of parameter names, used as an identifier within the ISA-Tab
+                          document. These names are used in the Study and Assay files (in the "Parameter Value []" column
+                          heading) to list the values used for each protocol parameter. Refer to section Multiple values
+                          fields in the Investigation File on how to encode multiple values in one field and match term sources
+    --parameterstermaccessionnumber &lt;parameters term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --parameterstermsourceref &lt;parameters term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --componentsname &lt;compoments name>
+                          A semicolon-delimited (";") list of a protocol's components; e.g. instrument names, software names,
+                          and reagents names. Refer to section Multiple values fields in the Investigation File on how to
+                          encode multiple components in one field and match term sources.
+    --componentstype &lt;compoments type>
+                          Term to classify the protocol components listed for example, instrument, software, detector or
+                          reagent. The term can be free text or from, for example, a controlled vocabulary or an ontology. If
+                          the latter source is used the Term Accession Number and Term Source REF fields below are required.
+    --componentstypetermaccessionnumber &lt;compoments type accession number>
+                          The accession number from the Source associated to the selected terms.
+    --componentstypetermsourceref &lt;compoments type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match a Term Source Name previously declared in the ontology section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-protocol-edit">study protocol edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol edit [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-protocol-register">study protocol register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol register [--help] --studyidentifier &lt;string> --name &lt;name>
+                                                [--protocoltype &lt;protocol type>]
+                                                [--typetermaccessionnumber &lt;type term accession number>]
+                                                [--typetermsourceref &lt;type term source ref>] [--description &lt;description>]
+                                                [--uri &lt;uri>] [--version &lt;version>] [--parametersname &lt;parameters name>]
+                                                [--parameterstermaccessionnumber &lt;parameters term accession number>]
+                                                [--parameterstermsourceref &lt;parameters term source ref>]
+                                                [--componentsname &lt;compoments name>] [--componentstype &lt;compoments type>]
+                                                [--componentstypetermaccessionnumber &lt;compoments type accession number>]
+                                                [--componentstypetermsourceref &lt;compoments type term source ref>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of the protocols used within the ISA-Tab document. The names are used as identifiers within
+                          the ISA-Tab document and will be referenced in the Study and Assay files in the Protocol REF
+                          columns. Names can be either local identifiers, unique within the ISA Archive which contains them,
+                          or fully qualified external accession numbers.
+    --protocoltype &lt;protocol type>
+                          Term to classify the protocol. The term can be free text or from, for example, a controlled
+                          vocabulary or an ontology. If the latter source is used the Term Accession Number and Term Source
+                          REF fields below are required.
+    --typetermaccessionnumber &lt;type term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --typetermsourceref &lt;type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --description &lt;description>
+                          A free-text description of the protocol.
+    --uri &lt;uri>           Pointer to protocol resources external to the ISA-Tab that can be accessed by their Uniform Resource
+                          Identifier (URI).
+    --version &lt;version>   An identifier for the version to ensure protocol tracking.
+    --parametersname &lt;parameters name>
+                          A semicolon-delimited (";") list of parameter names, used as an identifier within the ISA-Tab
+                          document. These names are used in the Study and Assay files (in the "Parameter Value []" column
+                          heading) to list the values used for each protocol parameter. Refer to section Multiple values
+                          fields in the Investigation File on how to encode multiple values in one field and match term sources
+    --parameterstermaccessionnumber &lt;parameters term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --parameterstermsourceref &lt;parameters term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Name declared in the Ontology Source Reference section.
+    --componentsname &lt;compoments name>
+                          A semicolon-delimited (";") list of a protocol's components; e.g. instrument names, software names,
+                          and reagents names. Refer to section Multiple values fields in the Investigation File on how to
+                          encode multiple components in one field and match term sources.
+    --componentstype &lt;compoments type>
+                          Term to classify the protocol components listed for example, instrument, software, detector or
+                          reagent. The term can be free text or from, for example, a controlled vocabulary or an ontology. If
+                          the latter source is used the Term Accession Number and Term Source REF fields below are required.
+    --componentstypetermaccessionnumber &lt;compoments type accession number>
+                          The accession number from the Source associated to the selected terms.
+    --componentstypetermsourceref &lt;compoments type term source ref>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match a Term Source Name previously declared in the ontology section.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-protocol-unregister">study protocol unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol unregister [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="study-protocol-show">study protocol show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc study protocol show [--help] --studyidentifier &lt;string> --name &lt;name>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Identifier of the study the design is associated with
+    --name, -n &lt;name>     The name of one factor used in the Study and/or Assay files. A factor corresponds to an independent
+                          variable manipulated by the experimentalist with the intention to affect biological systems in a way
+                          that can be measured by an assay. The value of a factor is given in the Study or Assay file,
+                          accordingly. If both Study and Assay have a Factor Value, these must be different.
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h4 id="assay">assay:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc assay [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    init &lt;init args>      Initialize a new empty assay and associated folder structure in the arc.
+    register &lt;register args>
+                          Register an existing assay in the arc with the given assay metadata.
+    add &lt;add args>        Create a new assay file and associated folder structure in the arc and subsequently register it with
+                          the given assay metadata
+    delete &lt;delete args>  Delete the given assays folder and its underlying file structure
+    unregister &lt;unregister args>
+                          Unregister an assay from the given studys' assay register in the investigation file
+    remove &lt;remove args>  Both unregister and assay from the investigation file and delete its folders and files
+    update &lt;update args>  Update an existing assay in the arc with the given assay metadata
+    edit &lt;edit args>      Open and edit an existing assay in the arc with a text editor. Arguments passed for this command
+                          will be pre-set in the editor.
+    move &lt;move args>      Move an assay from one study to another
+    show &lt;show args>      Show the values of an existing assay
+    list                  List all assays registered in the arc
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-init">assay init</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay init [--help] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay, will be used as name of the root folder of the new assay folder structure
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-register">assay register</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay register [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
+                                       [--measurementtype &lt;measurement type>]
+                                       [--measurementtypetermaccessionnumber &lt;measurement type accession>]
+                                       [--measurementtypetermsourceref &lt;measurement type term source>]
+                                       [--technologytype &lt;technology type>]
+                                       [--technologytypetermaccessionnumber &lt;technology type accession>]
+                                       [--technologytypetermsourceref &lt;technology type term source>]
+                                       [--technologyplatform &lt;technology platform>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Name of the study in which the assay is situated
+    --assayidentifier, -a &lt;string>
+                          Name of the assay of interest
+    --measurementtype &lt;measurement type>
+                          A term to qualify the endpoint, or what is being measured (e.g. gene expression profiling or protein
+                          identification). The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --measurementtypetermaccessionnumber &lt;measurement type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --measurementtypetermsourceref &lt;measurement type term source>
+                          The Source REF has to match one of the Term Source Name declared in the Ontology Source Reference
+                          section.
+    --technologytype &lt;technology type>
+                          Term to identify the technology used to perform the measurement, e.g. DNA microarray, mass
+                          spectrometry. The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --technologytypetermaccessionnumber &lt;technology type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --technologytypetermsourceref &lt;technology type term source>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --technologyplatform &lt;technology platform>
+                          Manufacturer and platform name, e.g. Bruker AVANCE
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-add">assay add</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay add [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
+                                  [--measurementtype &lt;measurement type>]
+                                  [--measurementtypetermaccessionnumber &lt;measurement type accession>]
+                                  [--measurementtypetermsourceref &lt;measurement type term source>]
+                                  [--technologytype &lt;technology type>]
+                                  [--technologytypetermaccessionnumber &lt;technology type accession>]
+                                  [--technologytypetermsourceref &lt;technology type term source>]
+                                  [--technologyplatform &lt;technology platform>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Name of the study in which the assay is situated
+    --assayidentifier, -a &lt;string>
+                          Name of the assay of interest
+    --measurementtype &lt;measurement type>
+                          A term to qualify the endpoint, or what is being measured (e.g. gene expression profiling or protein
+                          identification). The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --measurementtypetermaccessionnumber &lt;measurement type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --measurementtypetermsourceref &lt;measurement type term source>
+                          The Source REF has to match one of the Term Source Name declared in the Ontology Source Reference
+                          section.
+    --technologytype &lt;technology type>
+                          Term to identify the technology used to perform the measurement, e.g. DNA microarray, mass
+                          spectrometry. The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --technologytypetermaccessionnumber &lt;technology type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --technologytypetermsourceref &lt;technology type term source>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --technologyplatform &lt;technology platform>
+                          Manufacturer and platform name, e.g. Bruker AVANCE
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-delete">assay delete</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay delete [--help] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay, will be used as name of the root folder of the new assay folder structure
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-unregister">assay unregister</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay unregister [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;study identifier>
+                          Identifier of the study in which the assay is registered
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay of interest
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-remove">assay remove</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay remove [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;study identifier>
+                          Identifier of the study in which the assay is registered
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay of interest
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-update">assay update</nfdi-h5>
+<p>Give new metadata that overwrite the current metadata of an assay.</p>
+<nfdi-code class="language-powershell">USAGE: arc assay update [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
+                                     [--measurementtype &lt;measurement type>]
+                                     [--measurementtypetermaccessionnumber &lt;measurement type accession>]
+                                     [--measurementtypetermsourceref &lt;measurement type term source>]
+                                     [--technologytype &lt;technology type>]
+                                     [--technologytypetermaccessionnumber &lt;technology type accession>]
+                                     [--technologytypetermsourceref &lt;technology type term source>]
+                                     [--technologyplatform &lt;technology platform>]
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;string>
+                          Name of the study in which the assay is situated
+    --assayidentifier, -a &lt;string>
+                          Name of the assay of interest
+    --measurementtype &lt;measurement type>
+                          A term to qualify the endpoint, or what is being measured (e.g. gene expression profiling or protein
+                          identification). The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --measurementtypetermaccessionnumber &lt;measurement type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --measurementtypetermsourceref &lt;measurement type term source>
+                          The Source REF has to match one of the Term Source Name declared in the Ontology Source Reference
+                          section.
+    --technologytype &lt;technology type>
+                          Term to identify the technology used to perform the measurement, e.g. DNA microarray, mass
+                          spectrometry. The term can be free text or from, for example, a controlled vocabulary or an
+                          ontology. If the latter source is used the Term Accession Number and Term Source REF fields below
+                          are required.
+    --technologytypetermaccessionnumber &lt;technology type accession>
+                          The accession number from the Term Source associated with the selected term.
+    --technologytypetermsourceref &lt;technology type term source>
+                          Identifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --technologyplatform &lt;technology platform>
+                          Manufacturer and platform name, e.g. Bruker AVANCE
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-edit">assay edit</nfdi-h5>
+<p>Take the current metadata of an assay and change it.<br />
+(While <code>assay edit</code> opens the current metadata that can be altered by the user, <code>assay update</code> will take a new set of metadata and overwrites the existing one)</p>
+<nfdi-code class="language-powershell">USAGE: arc assay edit [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;study identifier>
+                          Identifier of the study in which the assay is registered
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay of interest
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-move">assay move</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay move [--help] --studyidentifier &lt;study identifier> --assayidentifier &lt;assay identifier>
+                                   --targetstudyidentifier &lt;target study identifier>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;study identifier>
+                          Name of the study in which the assay is situated
+    --assayidentifier, -a &lt;assay identifier>
+                          Name of the assay of interest
+    --targetstudyidentifier, -t &lt;target study identifier>
+                          Target study to which the assay should be moved
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="assay-show">assay show</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc assay show [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
+
+OPTIONS:
+
+    --studyidentifier, -s &lt;study identifier>
+                          Identifier of the study in which the assay is registered
+    --assayidentifier, -a &lt;assay identifier>
+                          Identifier of the assay of interest
+    --help                display this list of options.
+</nfdi-code>
+<br>
+<nfdi-h4 id="configuration">configuration:</nfdi-h4>
+<nfdi-code class="language-powershell">USAGE: arc configuration [--help] [&lt;subcommand> [&lt;options>]]
+
+SUBCOMMANDS:
+
+    edit &lt;edit args>      Open and edit an existing assay in the arc with a text editor. Arguments passed for this command
+                          will be pre-set in the editor.
+    list &lt;list args>      List all assays registered in the arc.
+    set &lt;set args>        Assign the given value to the given name.
+    unset &lt;unset args>    Remove the value bound to the given name.
+
+    Use 'arc &lt;subcommand> --help' for additional information.
+
+OPTIONS:
+
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="configuration-list">configuration list</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc configuration list [--help] [--local] [--global]
+
+OPTIONS:
+
+    --local, -l           Lists the local settings for this arc
+    --global, -g          Lists the global settings of the arccommander
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="configuration-edit">configuration edit</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc configuration edit [--help] [--local] [--global]
+
+OPTIONS:
+
+    --local, -l           Edit the local settings for this arc
+    --global, -g          Edit the global settings of the arccommander
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="configuration-set">configuration set</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc configuration set [--help] [--local] [--global] --name &lt;string> --value &lt;string>
+
+OPTIONS:
+
+    --local, -l           Set the the value of the name locally for this arc
+    --global, -g          Set the the value of the name globally for the arccommander
+    --name, -n &lt;string>   The name of the setting in 'Section.Key' format
+    --value, -v &lt;string>  The new value of the setting
+    --help                display this list of options.
+</nfdi-code>
+<nfdi-h5 id="configuration-unset">configuration unset</nfdi-h5>
+<nfdi-code class="language-powershell">USAGE: arc configuration unset [--help] [--local] [--global] --name &lt;string>
+
+OPTIONS:
+
+    --local, -l           Unset the the value of the name locally for this arc
+    --global, -g          Unset the the value of the name globally for the arccommander
+    --name, -n &lt;string>   The name of the setting in 'Section.Key' format
+    --help                display this list of options.
+</nfdi-code>
+
+      <h3>
+        DataPLANT Support
+      </h3>
+      <div>
+        Besides these technical solutions, DataPLANT supports you with community-engaged data stewardship. For further assistance, feel free to reach out via our 
+        <a href="https://support.nfdi4plants.org">
+          helpdesk
+        </a>
+         or by contacting us 
+        <span style="display: inline-flex; flex-wrap: wrap;">
+          <a href="javascript:location='mailto:info@nfdi4plants.org';void 0">
+            directly
+          </a>
+          .
+        </span>
+      </div>
+      <div>
+        <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/detailedUsageInstruction.md" style="margin-left: auto; display: block; width: 130px;">
+          ✏️ Edit this page
+        </a>
+      </div>
+    </nfdi-body>
+  </body>
+  <nfdi-footer></nfdi-footer>
+</html>
