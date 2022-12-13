@@ -53,7 +53,12 @@ let layout (ctx : SiteContents) (activePageTitle: string) bodyCnt =
             link [Rel "stylesheet"; Href "https://fonts.googleapis.com/css?family=Open+Sans"]
             link [Rel "stylesheet"; Type "text/css"; Href "/style/style.css"]
             link [Rel "stylesheet"; Type "text/css"; Href "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"]
+            // script [ Type "module"; Src "/js/bundle.js"] []
+            #if WATCH
             script [ Type "module"; Src "/js/bundle.js"] []
+            #else 
+            script [ Type "module"; Src "/web-components-docs/js/bundle.js"] []
+            #endif
             style [] [
                 !! """
                     body {
@@ -113,4 +118,5 @@ let render (ctx : SiteContents) cnt =
 
 let docsLayout (docs: Nfdi4Plants.Docs) =
     // just an example url
-    Nfdi4Plants.Components.docsLayout("https://github.com/nfdi4plants/nfdi4plants.github.io/tree/main/src/", docs)
+    Nfdi4Plants.Components.docsLayout("https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/", docs)
+    
