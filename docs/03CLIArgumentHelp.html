@@ -59,57 +59,26 @@
           ARC Commander Dev Docs
         </div>
         <h1 slot="inner" href="/arcCommander-docs/docs/index.html">Home</h1>
-<h1 slot="inner" href="/arcCommander-docs/docs/detailedUsageInstruction.html">Detailed Usage Instruction</h1>
+<h1 slot="inner" href="/arcCommander-docs/docs/01GeneralCLIStructure.html">Detailed Usage Instruction</h1>
+<h1 slot="inner" href="/arcCommander-docs/docs/02SubcommandVerbs.html">Subcommand verbs</h1>
+<h1 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html">CLI Argument Help</h1>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#top-level">Top level</h2>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#init">init</h2>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#investigation">investigation</h2>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#study">study</h2>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#assay">assay</h2>
+<h2 slot="inner" href="/arcCommander-docs/docs/03CLIArgumentHelp.html#configuration">configuration</h2>
 
       </nfdi-sidebar-element>
       <h1 class="front-header">
-        Metadata
+        CLI argument help
       </h1>
       <i class="help">
         last updated at 2022-12-13
       </i>
       <nfdi-toc></nfdi-toc>
-      <nfdi-h3 id="general-cli-structure">General cli structure</nfdi-h3>
-<p>The general command line structure is designed as either</p>
-<nfdi-code class="language-powershell">arc &lt;top-level-command> &lt;top-level-command-args>
-</nfdi-code>
-<p>e.g.</p>
-<nfdi-code class="language-powershell">arc init
-</nfdi-code>
-<p>or</p>
-<nfdi-code class="language-powershell">arc &lt;object> &lt;subcommand-verb> &lt;subcommand-verb-args>
-</nfdi-code>
-<p>where <code>&lt;object&gt;</code> is one of the following:</p>
-<ul>
-<li><code>assay</code></li>
-<li><code>study</code>  or its sub-objects</li>
-<li><code>investigation</code> or its sub-objects</li>
-<li><code>configuration</code></li>
-</ul>
-<p>and <code>&lt;subcommand-verb&gt;</code> models what to do with the object, e.g</p>
-<nfdi-code class="language-powershell">arc study init
-</nfdi-code>
-<p>will initialize a new empty study in the ARC.</p>
-<nfdi-h3 id="subcommand-verbs">Subcommand verbs</nfdi-h3>
-<p>while not all object subcommands support all verbs, here is a list of the verbs and what to expect when they are applicable for an <code>&lt;object&gt;</code>:</p>
-<ul>
-<li>arc <code>&lt;object&gt;</code> <strong>init</strong> : will initialize a new empty <code>&lt;object&gt;</code> in the ARC.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>create</strong> will create a new <code>&lt;object&gt;</code> with the passed arguments in the ARC.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>update</strong> will update the registration of an existing <code>&lt;object&gt;</code> with the passed arguments.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>edit</strong> will open an existing <code>&lt;object&gt;</code> with a text editor, allowing editing the registration of the <code>&lt;object&gt;</code>.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>register</strong> will register an existing <code>&lt;object&gt;</code> in the ARC with the passed arguments.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>add</strong> is the combination of create/init+update and register, meaning it will create a new <code>&lt;object&gt;</code> in the ARC and subsequently register it with the passed arguments</li>
-<li>arc <code>&lt;object&gt;</code> <strong>delete</strong> will delete the <code>&lt;object&gt;</code> from the arc file structure.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>unregister</strong> will remove the <code>&lt;object&gt;</code> from the ARC's register.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>remove</strong> is the combination of delete and unregister, meaning it will delete the <code>&lt;object&gt;</code> from the ARC file structure and the ARC's registry</li>
-<li>arc <code>&lt;object&gt;</code> <strong>move</strong> will move the <code>&lt;object&gt;</code> from source to target register.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>list</strong> will print all <code>&lt;object&gt;s</code> registered in the ARC.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>set</strong> will set a single value in the <code>&lt;object&gt;</code>.</li>
-<li>arc <code>&lt;object&gt;</code> <strong>unset</strong> will remove a single value from the <code>&lt;object&gt;</code>.</li>
-</ul>
-<nfdi-h3 id="cli-argument-help">CLI argument help</nfdi-h3>
-<p>Here is the current help dump from the command line tool:</p>
-<nfdi-h4 id="top-level">Top level:</nfdi-h4>
+      <p>Here is the current help dump from the command line tool:</p>
+<nfdi-h2 id="top-level">Top level</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc [--help] [--workingdir &lt;working directory>] [--verbosity &lt;verbosity>]
                         [&lt;subcommand> [&lt;options>]]
 
@@ -136,7 +105,7 @@ OPTIONS:
                           Information, 2 -> Additional information
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h4 id="init">init:</nfdi-h4>
+<nfdi-h2 id="init">init</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc init [--help] [--owner &lt;owner>] [--repositoryadress &lt;repository adress>] [--editorpath &lt;editor path>]
 
 OPTIONS:
@@ -149,7 +118,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h4 id="investigation">investigation:</nfdi-h4>
+<nfdi-h2 id="investigation">investigation</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc.exe investigation [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -173,7 +142,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-create">investigation create</nfdi-h5>
+<nfdi-h3 id="investigation-create">investigation create</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation create [--help] --identifier &lt;investigation identifier> [--title &lt;title>]
                                              [--description &lt;description>] [--submissiondate &lt;submission date>]
                                              [--publicreleasedate &lt;public release date>]
@@ -191,7 +160,7 @@ OPTIONS:
                           The date on which the investigation was released publicly.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-update">investigation update</nfdi-h5>
+<nfdi-h3 id="investigation-update">investigation update</nfdi-h3>
 <p>Give new metadata that overwrite the current metadata of an investigation.</p>
 <nfdi-code class="language-powershell">USAGE: arc investigation update [--help] --identifier &lt;investigation identifier> [--title &lt;title>]
                                              [--description &lt;description>] [--submissiondate &lt;submission date>]
@@ -210,7 +179,7 @@ OPTIONS:
                           The date on which the investigation was released publicly.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-edit">investigation edit</nfdi-h5>
+<nfdi-h3 id="investigation-edit">investigation edit</nfdi-h3>
 <p>Take the current metadata of an investigation and change it.<br />
 (While <code>investigation edit</code> opens the current metadata that can be altered by the user, <code>investigation update</code> will take a new set of metadata and overwrites the existing one)</p>
 <nfdi-code class="language-powershell">USAGE: arc investigation edit [--help]
@@ -224,7 +193,7 @@ OPTIONS:
     --help                display this list of options.
 
 </nfdi-code>
-<nfdi-h5 id="investigation-delete">investigation delete</nfdi-h5>
+<nfdi-h3 id="investigation-delete">investigation delete</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation delete [--help] --identifier &lt;investigation identifier>
 
 OPTIONS:
@@ -234,7 +203,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="investigation-person">investigation person</nfdi-h5>
+<nfdi-h3 id="investigation-person">investigation person</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation person [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -257,7 +226,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-person-update">investigation person update</nfdi-h5>
+<nfdi-h3 id="investigation-person-update">investigation person update</nfdi-h3>
 <nfdi-code class="language-powershell">OPTIONS:
 
     --lastname, -l &lt;last name>
@@ -286,7 +255,7 @@ OPTIONS:
                           match one of the Term Source Names declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-person-edit">investigation person edit</nfdi-h5>
+<nfdi-h3 id="investigation-person-edit">investigation person edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation person edit [--help] --lastname &lt;last name> --firstname &lt;first name>
                                                   [--midinitials &lt;mid initials>]
 
@@ -300,7 +269,7 @@ OPTIONS:
                           The middle initials of a person associated with the investigation.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-person-register">investigation person register</nfdi-h5>
+<nfdi-h3 id="investigation-person-register">investigation person register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation person register [--help] --lastname &lt;last name> --firstname &lt;first name>
                                                       [--midinitials &lt;mid initials>] [--email &lt;e mail>]
                                                       [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
@@ -336,7 +305,7 @@ OPTIONS:
                           match one of the Term Source Names declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-person-unregister">investigation person unregister</nfdi-h5>
+<nfdi-h3 id="investigation-person-unregister">investigation person unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation person register [--help] --lastname &lt;last name> --firstname &lt;first name>
                                                       [--midinitials &lt;mid initials>] [--email &lt;e mail>]
                                                       [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
@@ -372,7 +341,7 @@ OPTIONS:
                           match one of the Term Source Names declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="investigation-person-show">investigation person show</nfdi-h5>
+<nfdi-h3 id="investigation-person-show">investigation person show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation person show [--help] --lastname &lt;last name> --firstname &lt;first name>
                                                  [--midinitials &lt;mid initials>]
 
@@ -387,7 +356,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="investigation-publication">investigation publication</nfdi-h5>
+<nfdi-h3 id="investigation-publication">investigation publication</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -409,7 +378,7 @@ OPTIONS:
 
     --help                display this list of options.    
 </nfdi-code>
-<nfdi-h5 id="investigation-publication-update">investigation publication update</nfdi-h5>
+<nfdi-h3 id="investigation-publication-update">investigation publication update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication update [--help] --doi &lt;doi> [--pubmedid &lt;pubmed id>]
                                                          [--authorlist &lt;author list>] [--title &lt;publication title>]
                                                          [--status &lt;publication status>]
@@ -434,7 +403,7 @@ OPTIONS:
                           match one the Term Source Name declared in the in the Ontology Source Reference section.
     --help                display this list of options.    
 </nfdi-code>
-<nfdi-h5 id="investigation-publication-edit">investigation publication edit</nfdi-h5>
+<nfdi-h3 id="investigation-publication-edit">investigation publication edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication edit [--help] --doi &lt;doi>
 
 OPTIONS:
@@ -442,7 +411,7 @@ OPTIONS:
     --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
     --help                display this list of options.    
 </nfdi-code>
-<nfdi-h5 id="investigation-publication-register">investigation publication register</nfdi-h5>
+<nfdi-h3 id="investigation-publication-register">investigation publication register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication register [--help] --doi &lt;doi> [--pubmedid &lt;pubmed id>]
                                                            [--authorlist &lt;author list>] [--title &lt;publication title>]
                                                            [--status &lt;publication status>]
@@ -467,7 +436,7 @@ OPTIONS:
                           match one the Term Source Name declared in the in the Ontology Source Reference section.
     --help                display this list of options.    
 </nfdi-code>
-<nfdi-h5 id="investigation-publication-unregister">investigation publication unregister</nfdi-h5>
+<nfdi-h3 id="investigation-publication-unregister">investigation publication unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication unregister [--help] --doi &lt;doi>
 
 OPTIONS:
@@ -475,7 +444,7 @@ OPTIONS:
     --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
     --help                display this list of options.    
 </nfdi-code>
-<nfdi-h5 id="investigation-publication-show">investigation publication show</nfdi-h5>
+<nfdi-h3 id="investigation-publication-show">investigation publication show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc investigation publication show [--help] --doi &lt;doi>
 
 OPTIONS:
@@ -484,7 +453,7 @@ OPTIONS:
     --help                display this list of options.    
 </nfdi-code>
 <br>
-<nfdi-h4 id="study">study:</nfdi-h4>
+<nfdi-h2 id="study">study</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc study [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -516,7 +485,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-init">study init</nfdi-h5>
+<nfdi-h3 id="study-init">study init</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study init [--help] --identifier &lt;study identifier>
 
 OPTIONS:
@@ -527,7 +496,7 @@ OPTIONS:
                           specification.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-register">study register</nfdi-h5>
+<nfdi-h3 id="study-register">study register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study register [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
                                        [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
 
@@ -546,7 +515,7 @@ OPTIONS:
                           The date on which the study SHOULD be released publicly.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-add">study add</nfdi-h5>
+<nfdi-h3 id="study-add">study add</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study add [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
                                   [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
 
@@ -565,7 +534,7 @@ OPTIONS:
                           The date on which the study SHOULD be released publicly.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-delete">study delete</nfdi-h5>
+<nfdi-h3 id="study-delete">study delete</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study delete [--help] --identifier &lt;study identifier>
 
 OPTIONS:
@@ -576,7 +545,7 @@ OPTIONS:
                           specification.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-unregister">study unregister</nfdi-h5>
+<nfdi-h3 id="study-unregister">study unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study unregister [--help] --identifier &lt;study identifier>
 
 OPTIONS:
@@ -587,7 +556,7 @@ OPTIONS:
                           specification.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-remove">study remove</nfdi-h5>
+<nfdi-h3 id="study-remove">study remove</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study remove [--help] --identifier &lt;study identifier>
 
 OPTIONS:
@@ -598,7 +567,7 @@ OPTIONS:
                           specification.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-update">study update</nfdi-h5>
+<nfdi-h3 id="study-update">study update</nfdi-h3>
 <p>Give new metadata that overwrite the current metadata of a study.</p>
 <nfdi-code class="language-powershell">USAGE: arc study update [--help] --identifier &lt;study identifier> [--title &lt;title>] [--description &lt;description>]
                                      [--submissiondate &lt;submission date>] [--publicreleasedate &lt;public release date>]
@@ -618,7 +587,7 @@ OPTIONS:
                           The date on which the study SHOULD be released publicly.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-edit">study edit</nfdi-h5>
+<nfdi-h3 id="study-edit">study edit</nfdi-h3>
 <p>Take the current metadata of a study and change it.<br />
 (While <code>study edit</code> opens the current metadata that can be altered by the user, <code>study update</code> will take a new set of metadata and overwrites the existing one)</p>
 <nfdi-code class="language-powershell">USAGE: arc study edit [--help] --identifier &lt;study identifier>
@@ -632,7 +601,7 @@ OPTIONS:
     --help                display this list of options.
 
 </nfdi-code>
-<nfdi-h5 id="study-show">study show</nfdi-h5>
+<nfdi-h3 id="study-show">study show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study show [--help] --identifier &lt;study identifier>
 
 OPTIONS:
@@ -644,7 +613,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="study-person">study person</nfdi-h5>
+<nfdi-h3 id="study-person">study person</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -667,7 +636,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-person-update">study person update</nfdi-h5>
+<nfdi-h3 id="study-person-update">study person update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person update [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
                                             [--midinitials &lt;mid initials>] [--email &lt;e mail>] [--phone &lt;phone number>]
                                             [--fax &lt;fax number>] [--address &lt;adress>] [--affiliation &lt;affiliation>]
@@ -704,7 +673,7 @@ OPTIONS:
                           match one of the Term Source Names declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-person-edit">study person edit</nfdi-h5>
+<nfdi-h3 id="study-person-edit">study person edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person edit [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
                                           [--midinitials &lt;mid initials>]
 
@@ -720,7 +689,7 @@ OPTIONS:
                           The middle initials of a person associated with the study.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-person-register">study person register</nfdi-h5>
+<nfdi-h3 id="study-person-register">study person register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person register [--help] --studyidentifier &lt;string> --lastname &lt;last name>
                                               --firstname &lt;first name> [--midinitials &lt;mid initials>] [--email &lt;e mail>]
                                               [--phone &lt;phone number>] [--fax &lt;fax number>] [--address &lt;adress>]
@@ -758,7 +727,7 @@ OPTIONS:
                           match one of the Term Source Names declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-person-unregister">study person unregister</nfdi-h5>
+<nfdi-h3 id="study-person-unregister">study person unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person unregister [--help] --studyidentifier &lt;string> --lastname &lt;last name>
                                                 --firstname &lt;first name> [--midinitials &lt;mid initials>]
 
@@ -774,7 +743,7 @@ OPTIONS:
                           The middle initials of a person associated with the study.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-person-show">study person show</nfdi-h5>
+<nfdi-h3 id="study-person-show">study person show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study person show [--help] --studyidentifier &lt;string> --lastname &lt;last name> --firstname &lt;first name>
                                          [--midinitials &lt;mid initials>]
 
@@ -791,7 +760,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="study-publication">study publication</nfdi-h5>
+<nfdi-h3 id="study-publication">study publication</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -813,7 +782,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-publication-update">study publication update</nfdi-h5>
+<nfdi-h3 id="study-publication-update">study publication update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication update [--help] --studyidentifier &lt;string> --doi &lt;doi> [--pubmedid &lt;pubmed id>]
                                                  [--authorlist &lt;author list>] [--title &lt;publication title>]
                                                  [--status &lt;publication status>]
@@ -840,7 +809,7 @@ OPTIONS:
                           match one the Term Source Name declared in the in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-publication-edit">study publication edit</nfdi-h5>
+<nfdi-h3 id="study-publication-edit">study publication edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication edit [--help] --studyidentifier &lt;string> --doi &lt;doi>
 
 OPTIONS:
@@ -850,7 +819,7 @@ OPTIONS:
     --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-publication-register">study publication register</nfdi-h5>
+<nfdi-h3 id="study-publication-register">study publication register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication register [--help] --studyidentifier &lt;string> --doi &lt;doi> [--pubmedid &lt;pubmed id>]
                                                    [--authorlist &lt;author list>] [--title &lt;publication title>]
                                                    [--status &lt;publication status>]
@@ -877,7 +846,7 @@ OPTIONS:
                           match one the Term Source Name declared in the in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-publication-unregister">study publication unregister</nfdi-h5>
+<nfdi-h3 id="study-publication-unregister">study publication unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication unregister [--help] --studyidentifier &lt;string> --doi &lt;doi>
 
 OPTIONS:
@@ -887,7 +856,7 @@ OPTIONS:
     --doi, -d &lt;doi>       A Digital Object Identifier (DOI) for that publication (where available).
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-publication-show">study publication show</nfdi-h5>
+<nfdi-h3 id="study-publication-show">study publication show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study publication show [--help] --studyidentifier &lt;string> --doi &lt;doi>
 
 OPTIONS:
@@ -898,7 +867,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="study-design">study design</nfdi-h5>
+<nfdi-h3 id="study-design">study design</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -921,7 +890,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-design-update">study design update</nfdi-h5>
+<nfdi-h3 id="study-design-update">study design update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design update [--help] --studyidentifier &lt;string> --designtype &lt;design type>
                                             [--typetermaccessionnumber &lt;type term accession number>]
                                             [--typetermsourceref &lt;type term source ref>]
@@ -942,7 +911,7 @@ OPTIONS:
                           Source REF has to match one the Term Source Name declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-design-edit">study design edit</nfdi-h5>
+<nfdi-h3 id="study-design-edit">study design edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design edit [--help] --studyidentifier &lt;string> --designtype &lt;design type>
 
 OPTIONS:
@@ -956,7 +925,7 @@ OPTIONS:
                           Term Source REF fields below are required.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-design-register">study design register</nfdi-h5>
+<nfdi-h3 id="study-design-register">study design register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design register [--help] --studyidentifier &lt;string> --designtype &lt;design type>
                                               [--typetermaccessionnumber &lt;type term accession number>]
                                               [--typetermsourceref &lt;type term source ref>]
@@ -977,7 +946,7 @@ OPTIONS:
                           Source REF has to match one the Term Source Name declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-design-unregister">study design unregister</nfdi-h5>
+<nfdi-h3 id="study-design-unregister">study design unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design unregister [--help] --studyidentifier &lt;string> --designtype &lt;design type>
 
 OPTIONS:
@@ -991,7 +960,7 @@ OPTIONS:
                           Term Source REF fields below are required.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-design-show">study design show</nfdi-h5>
+<nfdi-h3 id="study-design-show">study design show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study design show [--help] --studyidentifier &lt;string> --designtype &lt;design type>
 
 OPTIONS:
@@ -1006,7 +975,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="study-factor">study factor</nfdi-h5>
+<nfdi-h3 id="study-factor">study factor</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -1028,7 +997,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-factor-update">study factor update</nfdi-h5>
+<nfdi-h3 id="study-factor-update">study factor update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor update [--help] --studyidentifier &lt;string> --name &lt;name> [--factortype &lt;factor type>]
                                             [--typetermaccessionnumber &lt;type term accession number>]
                                             [--typetermsourceref &lt;type term source ref>]
@@ -1052,7 +1021,7 @@ OPTIONS:
                           match one of the Term Source Name declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-factor-edit">study factor edit</nfdi-h5>
+<nfdi-h3 id="study-factor-edit">study factor edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor edit [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1065,7 +1034,7 @@ OPTIONS:
                           accordingly. If both Study and Assay have a Factor Value, these must be different.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-factor-register">study factor register</nfdi-h5>
+<nfdi-h3 id="study-factor-register">study factor register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor register [--help] --studyidentifier &lt;string> --name &lt;name> [--factortype &lt;factor type>]
                                               [--typetermaccessionnumber &lt;type term accession number>]
                                               [--typetermsourceref &lt;type term source ref>]
@@ -1089,7 +1058,7 @@ OPTIONS:
                           match one of the Term Source Name declared in the Ontology Source Reference section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-factor-unregister">study factor unregister</nfdi-h5>
+<nfdi-h3 id="study-factor-unregister">study factor unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor unregister [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1102,7 +1071,7 @@ OPTIONS:
                           accordingly. If both Study and Assay have a Factor Value, these must be different.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-factor-show">study factor show</nfdi-h5>
+<nfdi-h3 id="study-factor-show">study factor show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study factor show [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1116,7 +1085,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h5 id="study-protocol">study protocol</nfdi-h5>
+<nfdi-h3 id="study-protocol">study protocol</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -1138,7 +1107,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-protocol-update">study protocol update</nfdi-h5>
+<nfdi-h3 id="study-protocol-update">study protocol update</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol update [--help] --studyidentifier &lt;string> --name &lt;name>
                                               [--protocoltype &lt;protocol type>]
                                               [--typetermaccessionnumber &lt;type term accession number>]
@@ -1197,7 +1166,7 @@ OPTIONS:
                           match a Term Source Name previously declared in the ontology section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-protocol-edit">study protocol edit</nfdi-h5>
+<nfdi-h3 id="study-protocol-edit">study protocol edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol edit [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1210,7 +1179,7 @@ OPTIONS:
                           accordingly. If both Study and Assay have a Factor Value, these must be different.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-protocol-register">study protocol register</nfdi-h5>
+<nfdi-h3 id="study-protocol-register">study protocol register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol register [--help] --studyidentifier &lt;string> --name &lt;name>
                                                 [--protocoltype &lt;protocol type>]
                                                 [--typetermaccessionnumber &lt;type term accession number>]
@@ -1269,7 +1238,7 @@ OPTIONS:
                           match a Term Source Name previously declared in the ontology section.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-protocol-unregister">study protocol unregister</nfdi-h5>
+<nfdi-h3 id="study-protocol-unregister">study protocol unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol unregister [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1282,7 +1251,7 @@ OPTIONS:
                           accordingly. If both Study and Assay have a Factor Value, these must be different.
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="study-protocol-show">study protocol show</nfdi-h5>
+<nfdi-h3 id="study-protocol-show">study protocol show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc study protocol show [--help] --studyidentifier &lt;string> --name &lt;name>
 
 OPTIONS:
@@ -1296,7 +1265,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h4 id="assay">assay:</nfdi-h4>
+<nfdi-h2 id="assay">assay</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc assay [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -1323,7 +1292,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-init">assay init</nfdi-h5>
+<nfdi-h3 id="assay-init">assay init</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay init [--help] --assayidentifier &lt;assay identifier>
 
 OPTIONS:
@@ -1332,7 +1301,7 @@ OPTIONS:
                           Identifier of the assay, will be used as name of the root folder of the new assay folder structure
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-register">assay register</nfdi-h5>
+<nfdi-h3 id="assay-register">assay register</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay register [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
                                        [--measurementtype &lt;measurement type>]
                                        [--measurementtypetermaccessionnumber &lt;measurement type accession>]
@@ -1372,7 +1341,7 @@ OPTIONS:
                           Manufacturer and platform name, e.g. Bruker AVANCE
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-add">assay add</nfdi-h5>
+<nfdi-h3 id="assay-add">assay add</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay add [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
                                   [--measurementtype &lt;measurement type>]
                                   [--measurementtypetermaccessionnumber &lt;measurement type accession>]
@@ -1412,7 +1381,7 @@ OPTIONS:
                           Manufacturer and platform name, e.g. Bruker AVANCE
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-delete">assay delete</nfdi-h5>
+<nfdi-h3 id="assay-delete">assay delete</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay delete [--help] --assayidentifier &lt;assay identifier>
 
 OPTIONS:
@@ -1421,7 +1390,7 @@ OPTIONS:
                           Identifier of the assay, will be used as name of the root folder of the new assay folder structure
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-unregister">assay unregister</nfdi-h5>
+<nfdi-h3 id="assay-unregister">assay unregister</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay unregister [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
 
 OPTIONS:
@@ -1432,7 +1401,7 @@ OPTIONS:
                           Identifier of the assay of interest
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-remove">assay remove</nfdi-h5>
+<nfdi-h3 id="assay-remove">assay remove</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay remove [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
 
 OPTIONS:
@@ -1443,7 +1412,7 @@ OPTIONS:
                           Identifier of the assay of interest
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-update">assay update</nfdi-h5>
+<nfdi-h3 id="assay-update">assay update</nfdi-h3>
 <p>Give new metadata that overwrite the current metadata of an assay.</p>
 <nfdi-code class="language-powershell">USAGE: arc assay update [--help] [--studyidentifier &lt;string>] --assayidentifier &lt;string>
                                      [--measurementtype &lt;measurement type>]
@@ -1484,7 +1453,7 @@ OPTIONS:
                           Manufacturer and platform name, e.g. Bruker AVANCE
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-edit">assay edit</nfdi-h5>
+<nfdi-h3 id="assay-edit">assay edit</nfdi-h3>
 <p>Take the current metadata of an assay and change it.<br />
 (While <code>assay edit</code> opens the current metadata that can be altered by the user, <code>assay update</code> will take a new set of metadata and overwrites the existing one)</p>
 <nfdi-code class="language-powershell">USAGE: arc assay edit [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
@@ -1497,7 +1466,7 @@ OPTIONS:
                           Identifier of the assay of interest
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-move">assay move</nfdi-h5>
+<nfdi-h3 id="assay-move">assay move</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay move [--help] --studyidentifier &lt;study identifier> --assayidentifier &lt;assay identifier>
                                    --targetstudyidentifier &lt;target study identifier>
 
@@ -1511,7 +1480,7 @@ OPTIONS:
                           Target study to which the assay should be moved
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="assay-show">assay show</nfdi-h5>
+<nfdi-h3 id="assay-show">assay show</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc assay show [--help] [--studyidentifier &lt;study identifier>] --assayidentifier &lt;assay identifier>
 
 OPTIONS:
@@ -1523,7 +1492,7 @@ OPTIONS:
     --help                display this list of options.
 </nfdi-code>
 <br>
-<nfdi-h4 id="configuration">configuration:</nfdi-h4>
+<nfdi-h2 id="configuration">configuration</nfdi-h2>
 <nfdi-code class="language-powershell">USAGE: arc configuration [--help] [&lt;subcommand> [&lt;options>]]
 
 SUBCOMMANDS:
@@ -1540,7 +1509,7 @@ OPTIONS:
 
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="configuration-list">configuration list</nfdi-h5>
+<nfdi-h3 id="configuration-list">configuration list</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc configuration list [--help] [--local] [--global]
 
 OPTIONS:
@@ -1549,7 +1518,7 @@ OPTIONS:
     --global, -g          Lists the global settings of the arccommander
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="configuration-edit">configuration edit</nfdi-h5>
+<nfdi-h3 id="configuration-edit">configuration edit</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc configuration edit [--help] [--local] [--global]
 
 OPTIONS:
@@ -1558,7 +1527,7 @@ OPTIONS:
     --global, -g          Edit the global settings of the arccommander
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="configuration-set">configuration set</nfdi-h5>
+<nfdi-h3 id="configuration-set">configuration set</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc configuration set [--help] [--local] [--global] --name &lt;string> --value &lt;string>
 
 OPTIONS:
@@ -1569,7 +1538,7 @@ OPTIONS:
     --value, -v &lt;string>  The new value of the setting
     --help                display this list of options.
 </nfdi-code>
-<nfdi-h5 id="configuration-unset">configuration unset</nfdi-h5>
+<nfdi-h3 id="configuration-unset">configuration unset</nfdi-h3>
 <nfdi-code class="language-powershell">USAGE: arc configuration unset [--help] [--local] [--global] --name &lt;string>
 
 OPTIONS:
@@ -1597,7 +1566,7 @@ OPTIONS:
         </span>
       </div>
       <div>
-        <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/detailedUsageInstruction.md" style="margin-left: auto; display: block; width: 130px;">
+        <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/03CLIArgumentHelp.md" style="margin-left: auto; display: block; width: 130px;">
           ✏️ Edit this page
         </a>
       </div>

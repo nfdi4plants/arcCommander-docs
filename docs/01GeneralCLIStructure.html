@@ -71,13 +71,32 @@
 
       </nfdi-sidebar-element>
       <h1 class="front-header">
-        Index
+        General cli structure
       </h1>
       <i class="help">
         last updated at 2022-12-13
       </i>
       <nfdi-toc></nfdi-toc>
-      <p>Welcome to the ARC Commander Developer Docs. Feel free to explore topics in the sidebar.</p>
+      <p>The general command line structure is designed as either</p>
+<nfdi-code class="language-powershell">arc &lt;top-level-command> &lt;top-level-command-args>
+</nfdi-code>
+<p>e.g.</p>
+<nfdi-code class="language-powershell">arc init
+</nfdi-code>
+<p>or</p>
+<nfdi-code class="language-powershell">arc &lt;object> &lt;subcommand-verb> &lt;subcommand-verb-args>
+</nfdi-code>
+<p>where <code>&lt;object&gt;</code> is one of the following:</p>
+<ul>
+<li><code>assay</code></li>
+<li><code>study</code>  or its sub-objects</li>
+<li><code>investigation</code> or its sub-objects</li>
+<li><code>configuration</code></li>
+</ul>
+<p>and <code>&lt;subcommand-verb&gt;</code> models what to do with the object, e.g</p>
+<nfdi-code class="language-powershell">arc study init
+</nfdi-code>
+<p>will initialize a new empty study in the ARC.</p>
 
       <h3>
         DataPLANT Support
@@ -96,7 +115,7 @@
         </span>
       </div>
       <div>
-        <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/index.md" style="margin-left: auto; display: block; width: 130px;">
+        <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/01GeneralCLIStructure.md" style="margin-left: auto; display: block; width: 130px;">
           ✏️ Edit this page
         </a>
       </div>
