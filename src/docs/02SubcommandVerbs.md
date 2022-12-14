@@ -7,9 +7,8 @@ add sidebar: _sidebars/mainSidebar.md
 Article Status: Publishable
 ---
 
-## Subcommand verbs
 
-while not all object subcommands support all verbs, here is a list of the verbs and what to expect when they are applicable for an `<object>`:
+While not all object subcommands support all verbs, here is a list of the verbs and what to expect when they are applicable for an `<object>`:
 
 - arc `<object>` **init** : will initialize a new empty `<object>` in the ARC.
 - arc `<object>` **create** will create a new `<object>` with the passed arguments in the ARC.

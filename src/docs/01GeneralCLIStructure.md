@@ -7,9 +7,6 @@ add sidebar: _sidebars/mainSidebar.md
 Article Status: Publishable
 ---
 
-
-## General cli structure
-
 The general command line structure is designed as either
 
 ```powershell
