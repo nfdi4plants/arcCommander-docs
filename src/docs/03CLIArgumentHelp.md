@@ -1,71 +1,17 @@
 ---
 layout: docs
-title: Metadata
+title: "CLI argument help"
 date: 2022-12-13
 add toc: true
 add sidebar: _sidebars/mainSidebar.md
 Article Status: Publishable
 ---
 
-
-### General cli structure
-
-The general command line structure is designed as either
-
-```powershell
-arc <top-level-command> <top-level-command-args>
-```
-
-e.g.
-
-```powershell
-arc init
-```
-
-or
-
-```powershell
-arc <object> <subcommand-verb> <subcommand-verb-args>
-```
-
-where `<object>` is one of the following:
-
- - `assay` 
- - `study`  or its sub-objects 
- - `investigation` or its sub-objects 
- - `configuration`
-
-and `<subcommand-verb>` models what to do with the object, e.g
-
-```powershell
-arc study init
-```
-
-will initialize a new empty study in the ARC.
-
-### Subcommand verbs
-
-while not all object subcommands support all verbs, here is a list of the verbs and what to expect when they are applicable for an `<object>`:
-
-- arc `<object>` **init** : will initialize a new empty `<object>` in the ARC.
-- arc `<object>` **create** will create a new `<object>` with the passed arguments in the ARC.
-- arc `<object>` **update** will update the registration of an existing `<object>` with the passed arguments.
-- arc `<object>` **edit** will open an existing `<object>` with a text editor, allowing editing the registration of the `<object>`. 
-- arc `<object>` **register** will register an existing `<object>` in the ARC with the passed arguments.
-- arc `<object>` **add** is the combination of create/init+update and register, meaning it will create a new `<object>` in the ARC and subsequently register it with the passed arguments
-- arc `<object>` **delete** will delete the `<object>` from the arc file structure.
-- arc `<object>` **unregister** will remove the `<object>` from the ARC's register.
-- arc `<object>` **remove** is the combination of delete and unregister, meaning it will delete the `<object>` from the ARC file structure and the ARC's registry
-- arc `<object>` **move** will move the `<object>` from source to target register.
-- arc `<object>` **list** will print all `<object>s` registered in the ARC.
-- arc `<object>` **set** will set a single value in the `<object>`.
-- arc `<object>` **unset** will remove a single value from the `<object>`.
-
-### CLI argument help
+## CLI argument help
 
 Here is the current help dump from the command line tool:
 
-#### Top level:
+### Top level
 
 ```powershell
 USAGE: arc [--help] [--workingdir <working directory>] [--verbosity <verbosity>]
@@ -95,7 +41,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-#### init: 
+### init
 
 ```powershell
 USAGE: arc init [--help] [--owner <owner>] [--repositoryadress <repository adress>] [--editorpath <editor path>]
@@ -109,9 +55,10 @@ OPTIONS:
                           The path leading to the editor used for text prompts (Default in Windows is notepad)
     --help                display this list of options.
 ```
+
 <br>
 
-#### investigation:
+### investigation
 
 ```powershell
 USAGE: arc.exe investigation [--help] [<subcommand> [<options>]]
@@ -138,7 +85,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### investigation create
+#### investigation create
 
 ```powershell
 USAGE: arc investigation create [--help] --identifier <investigation identifier> [--title <title>]
@@ -159,7 +106,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### investigation update
+#### investigation update
 
 Give new metadata that overwrite the current metadata of an investigation.
 
@@ -182,7 +129,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### investigation edit
+#### investigation edit
 
 Take the current metadata of an investigation and change it.  
 (While `investigation edit` opens the current metadata that can be altered by the user, `investigation update` will take a new set of metadata and overwrites the existing one)
@@ -200,7 +147,7 @@ OPTIONS:
 
 ```
 
-##### investigation delete
+#### investigation delete
 
 ```powershell
 USAGE: arc investigation delete [--help] --identifier <investigation identifier>
@@ -214,8 +161,7 @@ OPTIONS:
 
 <br>
 
-
-##### investigation person
+#### investigation person
 
 ```powershell
 USAGE: arc investigation person [--help] [<subcommand> [<options>]]
@@ -241,7 +187,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### investigation person update
+#### investigation person update
 
 ```powershell
 OPTIONS:
@@ -273,8 +219,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### investigation person edit
+#### investigation person edit
 
 ```powershell
 USAGE: arc investigation person edit [--help] --lastname <last name> --firstname <first name>
@@ -291,48 +236,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### investigation person register
-
-```powershell
-USAGE: arc investigation person register [--help] --lastname <last name> --firstname <first name>
-                                                      [--midinitials <mid initials>] [--email <e mail>]
-                                                      [--phone <phone number>] [--fax <fax number>] [--address <adress>]
-                                                      [--affiliation <affiliation>] [--roles <roles>]
-                                                      [--rolestermaccessionnumber <roles term accession number>]
-                                                      [--rolestermsourceref <roles term source ref>]
-
-OPTIONS:
-
-    --lastname, -l <last name>
-                          The last name of a person associated with the investigation.
-    --firstname, -f <first name>
-                          The first name of a person associated with the investigation.
-    --midinitials, -m <mid initials>
-                          The middle initials of a person associated with the investigation.
-    --email <e mail>      The email address of a person associated with the investigation.
-    --phone <phone number>
-                          The telephone number of a person associated with the investigation.
-    --fax <fax number>    The fax number of a person associated with the investigation.
-    --address <adress>    The address of a person associated with the investigation.
-    --affiliation <affiliation>
-                          The organization affiliation for a person associated with the investigation.
-    --roles <roles>       Term to classify the role(s) performed by this person in the context of the investigation, which
-                          means that the roles reported here need not correspond to roles held withing their affiliated
-                          organization. Multiple annotations or values attached to one person can be provided by using a
-                          semicolon (";") Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor). The term can be
-                          free text or from, for example, a controlled vocabulary or an ontology. If the latter source is used
-                          the Term Accession Number and Term Source REF fields below are required.
-    --rolestermaccessionnumber <roles term accession number>
-                          The accession number from the Term Source associated with the selected term.
-    --rolestermsourceref <roles term source ref>
-                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
-                          match one of the Term Source Names declared in the Ontology Source Reference section.
-    --help                display this list of options.
-```
-
-
-##### investigation person unregister
+#### investigation person register
 
 ```powershell
 USAGE: arc investigation person register [--help] --lastname <last name> --firstname <first name>
@@ -371,7 +275,46 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### investigation person show
+#### investigation person unregister
+
+```powershell
+USAGE: arc investigation person register [--help] --lastname <last name> --firstname <first name>
+                                                      [--midinitials <mid initials>] [--email <e mail>]
+                                                      [--phone <phone number>] [--fax <fax number>] [--address <adress>]
+                                                      [--affiliation <affiliation>] [--roles <roles>]
+                                                      [--rolestermaccessionnumber <roles term accession number>]
+                                                      [--rolestermsourceref <roles term source ref>]
+
+OPTIONS:
+
+    --lastname, -l <last name>
+                          The last name of a person associated with the investigation.
+    --firstname, -f <first name>
+                          The first name of a person associated with the investigation.
+    --midinitials, -m <mid initials>
+                          The middle initials of a person associated with the investigation.
+    --email <e mail>      The email address of a person associated with the investigation.
+    --phone <phone number>
+                          The telephone number of a person associated with the investigation.
+    --fax <fax number>    The fax number of a person associated with the investigation.
+    --address <adress>    The address of a person associated with the investigation.
+    --affiliation <affiliation>
+                          The organization affiliation for a person associated with the investigation.
+    --roles <roles>       Term to classify the role(s) performed by this person in the context of the investigation, which
+                          means that the roles reported here need not correspond to roles held withing their affiliated
+                          organization. Multiple annotations or values attached to one person can be provided by using a
+                          semicolon (";") Unicode (U0003+B) as a separator (e.g.: submitter;funder;sponsor). The term can be
+                          free text or from, for example, a controlled vocabulary or an ontology. If the latter source is used
+                          the Term Accession Number and Term Source REF fields below are required.
+    --rolestermaccessionnumber <roles term accession number>
+                          The accession number from the Term Source associated with the selected term.
+    --rolestermsourceref <roles term source ref>
+                          dentifies the controlled vocabulary or ontology that this term comes from. The Source REF has to
+                          match one of the Term Source Names declared in the Ontology Source Reference section.
+    --help                display this list of options.
+```
+
+#### investigation person show
 
 ```powershell
 USAGE: arc investigation person show [--help] --lastname <last name> --firstname <first name>
@@ -390,7 +333,7 @@ OPTIONS:
 
 <br>
 
-##### investigation publication
+#### investigation publication
 
 ```powershell
 USAGE: arc investigation publication [--help] [<subcommand> [<options>]]
@@ -415,7 +358,7 @@ OPTIONS:
     --help                display this list of options.    
 ```
 
-##### investigation publication update
+#### investigation publication update
 
 ```powershell
 USAGE: arc investigation publication update [--help] --doi <doi> [--pubmedid <pubmed id>]
@@ -443,7 +386,7 @@ OPTIONS:
     --help                display this list of options.    
 ```
 
-##### investigation publication edit
+#### investigation publication edit
 
 ```powershell
 USAGE: arc investigation publication edit [--help] --doi <doi>
@@ -454,7 +397,7 @@ OPTIONS:
     --help                display this list of options.    
 ```
 
-##### investigation publication register
+#### investigation publication register
 
 ```powershell
 USAGE: arc investigation publication register [--help] --doi <doi> [--pubmedid <pubmed id>]
@@ -482,7 +425,7 @@ OPTIONS:
     --help                display this list of options.    
 ```
 
-##### investigation publication unregister
+#### investigation publication unregister
 
 ```powershell
 USAGE: arc investigation publication unregister [--help] --doi <doi>
@@ -493,7 +436,7 @@ OPTIONS:
     --help                display this list of options.    
 ```
 
-##### investigation publication show
+#### investigation publication show
 
 ```powershell
 USAGE: arc investigation publication show [--help] --doi <doi>
@@ -506,7 +449,7 @@ OPTIONS:
 
 <br>
 
-#### study:
+### study
 
 ```powershell
 USAGE: arc study [--help] [<subcommand> [<options>]]
@@ -541,7 +484,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study init
+#### study init
 
 ```powershell
 USAGE: arc study init [--help] --identifier <study identifier>
@@ -555,7 +498,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study register
+#### study register
 
 ```powershell
 USAGE: arc study register [--help] --identifier <study identifier> [--title <title>] [--description <description>]
@@ -577,7 +520,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study add
+#### study add
 
 ```powershell
 USAGE: arc study add [--help] --identifier <study identifier> [--title <title>] [--description <description>]
@@ -599,7 +542,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study delete
+#### study delete
 
 ```powershell
 USAGE: arc study delete [--help] --identifier <study identifier>
@@ -613,7 +556,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study unregister
+#### study unregister
 
 ```powershell
 USAGE: arc study unregister [--help] --identifier <study identifier>
@@ -627,7 +570,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study remove
+#### study remove
 
 ```powershell
 USAGE: arc study remove [--help] --identifier <study identifier>
@@ -641,7 +584,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study update
+#### study update
 
 Give new metadata that overwrite the current metadata of a study.
 
@@ -665,7 +608,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study edit
+#### study edit
 
 Take the current metadata of a study and change it.  
 (While `study edit` opens the current metadata that can be altered by the user, `study update` will take a new set of metadata and overwrites the existing one)
@@ -683,7 +626,7 @@ OPTIONS:
 
 ```
 
-##### study show
+#### study show
 
 ```powershell
 USAGE: arc study show [--help] --identifier <study identifier>
@@ -699,7 +642,7 @@ OPTIONS:
 
 <br>
 
-##### study person
+#### study person
 
 ```powershell
 USAGE: arc study person [--help] [<subcommand> [<options>]]
@@ -725,8 +668,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study person update
+#### study person update
 
 ```powershell
 USAGE: arc study person update [--help] --studyidentifier <string> --lastname <last name> --firstname <first name>
@@ -766,8 +708,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study person edit
+#### study person edit
 
 ```powershell
 USAGE: arc study person edit [--help] --studyidentifier <string> --lastname <last name> --firstname <first name>
@@ -786,8 +727,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study person register
+#### study person register
 
 ```powershell
 USAGE: arc study person register [--help] --studyidentifier <string> --lastname <last name>
@@ -828,8 +768,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study person unregister
+#### study person unregister
 
 ```powershell
 USAGE: arc study person unregister [--help] --studyidentifier <string> --lastname <last name>
@@ -848,8 +787,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study person show
+#### study person show
 
 ```powershell
 USAGE: arc study person show [--help] --studyidentifier <string> --lastname <last name> --firstname <first name>
@@ -867,9 +805,10 @@ OPTIONS:
                           The middle initials of a person associated with the study.
     --help                display this list of options.
 ```
+
 <br>
 
-##### study publication 
+#### study publication
 
 ```powershell
 USAGE: arc study publication [--help] [<subcommand> [<options>]]
@@ -894,7 +833,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study publication update
+#### study publication update
 
 ```powershell
 USAGE: arc study publication update [--help] --studyidentifier <string> --doi <doi> [--pubmedid <pubmed id>]
@@ -924,7 +863,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study publication edit
+#### study publication edit
 
 ```powershell
 USAGE: arc study publication edit [--help] --studyidentifier <string> --doi <doi>
@@ -937,7 +876,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study publication register
+#### study publication register
 
 ```powershell
 USAGE: arc study publication register [--help] --studyidentifier <string> --doi <doi> [--pubmedid <pubmed id>]
@@ -967,7 +906,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study publication unregister
+#### study publication unregister
 
 ```powershell
 USAGE: arc study publication unregister [--help] --studyidentifier <string> --doi <doi>
@@ -980,7 +919,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study publication show
+#### study publication show
 
 ```powershell
 USAGE: arc study publication show [--help] --studyidentifier <string> --doi <doi>
@@ -993,10 +932,9 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
 <br>
 
-##### study design
+#### study design
 
 ```powershell
 USAGE: arc study design [--help] [<subcommand> [<options>]]
@@ -1022,7 +960,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study design update
+#### study design update
 
 ```powershell
 USAGE: arc study design update [--help] --studyidentifier <string> --designtype <design type>
@@ -1046,7 +984,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study design edit
+#### study design edit
 
 ```powershell
 USAGE: arc study design edit [--help] --studyidentifier <string> --designtype <design type>
@@ -1063,7 +1001,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study design register
+#### study design register
 
 ```powershell
 USAGE: arc study design register [--help] --studyidentifier <string> --designtype <design type>
@@ -1087,7 +1025,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study design unregister
+#### study design unregister
 
 ```powershell
 USAGE: arc study design unregister [--help] --studyidentifier <string> --designtype <design type>
@@ -1104,7 +1042,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study design show
+#### study design show
 
 ```powershell
 USAGE: arc study design show [--help] --studyidentifier <string> --designtype <design type>
@@ -1120,9 +1058,10 @@ OPTIONS:
                           Term Source REF fields below are required.
     --help                display this list of options.
 ```
+
 <br>
 
-##### study factor
+#### study factor
 
 ```powershell
 USAGE: arc study factor [--help] [<subcommand> [<options>]]
@@ -1147,8 +1086,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study factor update
+#### study factor update
 
 ```powershell
 USAGE: arc study factor update [--help] --studyidentifier <string> --name <name> [--factortype <factor type>]
@@ -1175,8 +1113,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study factor edit
+#### study factor edit
 
 ```powershell
 USAGE: arc study factor edit [--help] --studyidentifier <string> --name <name>
@@ -1192,8 +1129,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study factor register
+#### study factor register
 
 ```powershell
 USAGE: arc study factor register [--help] --studyidentifier <string> --name <name> [--factortype <factor type>]
@@ -1220,8 +1156,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study factor unregister
+#### study factor unregister
 
 ```powershell
 USAGE: arc study factor unregister [--help] --studyidentifier <string> --name <name>
@@ -1237,8 +1172,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### study factor show
+#### study factor show
 
 ```powershell
 USAGE: arc study factor show [--help] --studyidentifier <string> --name <name>
@@ -1253,9 +1187,10 @@ OPTIONS:
                           accordingly. If both Study and Assay have a Factor Value, these must be different.
     --help                display this list of options.
 ```
+
 <br>
 
-##### study protocol
+#### study protocol
 
 ```powershell
 USAGE: arc study protocol [--help] [<subcommand> [<options>]]
@@ -1280,7 +1215,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study protocol update
+#### study protocol update
 
 ```powershell
 USAGE: arc study protocol update [--help] --studyidentifier <string> --name <name>
@@ -1342,7 +1277,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study protocol edit
+#### study protocol edit
 
 ```powershell
 USAGE: arc study protocol edit [--help] --studyidentifier <string> --name <name>
@@ -1358,7 +1293,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study protocol register
+#### study protocol register
 
 ```powershell
 USAGE: arc study protocol register [--help] --studyidentifier <string> --name <name>
@@ -1420,7 +1355,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study protocol unregister
+#### study protocol unregister
 
 ```powershell
 USAGE: arc study protocol unregister [--help] --studyidentifier <string> --name <name>
@@ -1436,7 +1371,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### study protocol show
+#### study protocol show
 
 ```powershell
 USAGE: arc study protocol show [--help] --studyidentifier <string> --name <name>
@@ -1452,10 +1387,9 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
 <br>
 
-#### assay:
+### assay
 
 ```powershell
 USAGE: arc assay [--help] [<subcommand> [<options>]]
@@ -1485,7 +1419,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### assay init
+#### assay init
 
 ```powershell
 USAGE: arc assay init [--help] --assayidentifier <assay identifier>
@@ -1497,8 +1431,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay register
+#### assay register
 
 ```powershell
 USAGE: arc assay register [--help] [--studyidentifier <string>] --assayidentifier <string>
@@ -1541,8 +1474,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay add
+#### assay add
 
 ```powershell
 USAGE: arc assay add [--help] [--studyidentifier <string>] --assayidentifier <string>
@@ -1585,8 +1517,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay delete
+#### assay delete
 
 ```powershell
 USAGE: arc assay delete [--help] --assayidentifier <assay identifier>
@@ -1598,8 +1529,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay unregister
+#### assay unregister
 
 ```powershell
 USAGE: arc assay unregister [--help] [--studyidentifier <study identifier>] --assayidentifier <assay identifier>
@@ -1613,8 +1543,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay remove
+#### assay remove
 
 ```powershell
 USAGE: arc assay remove [--help] [--studyidentifier <study identifier>] --assayidentifier <assay identifier>
@@ -1628,8 +1557,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay update
+#### assay update
 
 Give new metadata that overwrite the current metadata of an assay.
 
@@ -1674,8 +1602,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-
-##### assay edit
+#### assay edit
 
 Take the current metadata of an assay and change it.  
 (While `assay edit` opens the current metadata that can be altered by the user, `assay update` will take a new set of metadata and overwrites the existing one)
@@ -1692,7 +1619,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### assay move
+#### assay move
 
 ```powershell
 USAGE: arc assay move [--help] --studyidentifier <study identifier> --assayidentifier <assay identifier>
@@ -1709,7 +1636,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### assay show
+#### assay show
 
 ```powershell
 USAGE: arc assay show [--help] [--studyidentifier <study identifier>] --assayidentifier <assay identifier>
@@ -1722,9 +1649,10 @@ OPTIONS:
                           Identifier of the assay of interest
     --help                display this list of options.
 ```
+
 <br>
 
-#### configuration:
+### configuration
 
 ```powershell
 USAGE: arc configuration [--help] [<subcommand> [<options>]]
@@ -1744,7 +1672,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### configuration list
+#### configuration list
 
 ```powershell
 USAGE: arc configuration list [--help] [--local] [--global]
@@ -1756,7 +1684,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### configuration edit
+#### configuration edit
 
 ```powershell
 USAGE: arc configuration edit [--help] [--local] [--global]
@@ -1768,7 +1696,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### configuration set
+#### configuration set
 
 ```powershell
 USAGE: arc configuration set [--help] [--local] [--global] --name <string> --value <string>
@@ -1782,7 +1710,7 @@ OPTIONS:
     --help                display this list of options.
 ```
 
-##### configuration unset
+#### configuration unset
 
 ```powershell
 USAGE: arc configuration unset [--help] [--local] [--global] --name <string>
@@ -1794,4 +1722,3 @@ OPTIONS:
     --name, -n <string>   The name of the setting in 'Section.Key' format
     --help                display this list of options.
 ```
-
