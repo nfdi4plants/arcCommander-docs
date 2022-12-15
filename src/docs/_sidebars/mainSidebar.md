@@ -13,3 +13,7 @@
 ## assay:/docs/03CLIArgumentHelp.html#assay
 ## configuration:/docs/03CLIArgumentHelp.html#configuration
 ```
+
+```Knowledge Base
+# ARC Commander:https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html
+```
