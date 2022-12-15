@@ -15,5 +15,5 @@
 ```
 
 ```Knowledge Base
-# ARC Commander:https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html
+# ARC Commander:/docs/outlink.html
 ```

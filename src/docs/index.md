@@ -4,6 +4,7 @@ title: Home
 published: 2022-12-13
 add toc: true
 add sidebar: _sidebars\mainSidebar.md
+add support: false
 ---
 
 Welcome to the ARC Commander *Developer* Docs. Feel free to explore topics in the sidebar.
