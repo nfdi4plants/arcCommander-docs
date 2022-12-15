@@ -13,7 +13,3 @@
 ## assay:/docs/03CLIArgumentHelp.html#assay
 ## configuration:/docs/03CLIArgumentHelp.html#configuration
 ```
-
-```Knowledge Base
-# ARC Commander:/docs/outlink.html
-```
