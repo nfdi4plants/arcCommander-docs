@@ -7,8 +7,6 @@ add support: false
 add sidebar: _sidebars/mainSidebar.md
 ---
 
-The following part addresses all who want to contribute to the ARC Commander development.  
-
 ### Prerequisites
 
 - .NET SDK >= 3.1.00 (should roll forward to .net 6 if you are using that)
