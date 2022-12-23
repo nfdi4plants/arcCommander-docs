@@ -8,5 +8,6 @@ add support: false
 ---
 
 Welcome to the ARC Commander *Developer* Docs. Feel free to explore topics in the sidebar.
+The following part addresses all who want to contribute to the ARC Commander development.
 
 > *Users*, please check out the materials and info about ARC Commander [in our knowledge base](https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html).
