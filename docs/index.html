@@ -83,6 +83,33 @@ The following part addresses all who want to contribute to the ARC Commander dev
 <blockquote>
 <p><em>Users</em>, please check out the materials and info about ARC Commander <a href="https://nfdi4plants.org/nfdi4plants.knowledgebase/docs/implementation/ArcCommander.html">in our knowledge base</a>.</p>
 </blockquote>
+<nfdi-h3 id="prerequisites">Prerequisites</nfdi-h3>
+<ul>
+<li>.NET SDK &gt;= .net 6</li>
+</ul>
+<nfdi-h3 id="build">Build</nfdi-h3>
+<p>Check the Build.fsproj to take a look at the build targets. Here are some examples:</p>
+<nfdi-h4 id="via-dotnet-cli">via dotnet cli</nfdi-h4>
+<ul>
+<li>run <code>.\build.cmd &lt;YourBuildTargetHere&gt;</code> to run the buildchain of <code>&lt;YourBuildTargetHere&gt;</code></li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><p><code>.\build.cmd</code> run the default buildchain (clean artifacts, build projects, copy binaries to /bin)</p>
+</li>
+<li><p><code>.\build.cmd runTests</code> (clean artifacts, build projects, copy binaries to /bin, <strong>run unit tests</strong>)</p>
+</li>
+<li><p><code>.\build.cmd publishBinaries&lt;OS&gt;</code> (clean artifacts, build projects, copy binaries to /bin, <strong>publish project as single-file executable</strong> depending on <code>&lt;OS&gt;</code> which can be either <code>Win</code>, <code>Mac</code>, or <code>Linux</code>)</p>
+</li>
+<li><p>run <code>.\build.cmd releaseNotes semver:&lt;numberID&gt;</code> to update the Release Notes with commits not added yet (Look <a href="https://github.com/Freymaurer/Fake.Extensions.Release#releaseupdate">here</a> for the correct syntax).</p>
+</li>
+</ul>
+<p>For Linux use <code>build.sh</code> with the same syntax.</p>
+<nfdi-h3 id="release-on-github">Release on github</nfdi-h3>
+<p>To release the newest versions of the ArcCommander binaries on github, just <code>push</code> the newest version to the <code>main</code> branch. You must <code>update the release notes</code> as described above prior to this, as otherwise an old release may be overwritten by the new one.</p>
+<p>Release workflow is based on <a href="https://github.com/marketplace/actions/automatic-releases">https://github.com/marketplace/actions/automatic-releases</a></p>
+<nfdi-h4 id="testing-the-binary">testing the binary</nfdi-h4>
+<p>After running the default build target, binaries of the arcCommander tool will lie in ./bin/ArcCommander. To run the binary, either use the <code>ArcCommander.exe</code> file on windows or <code>dotnet ArcCommander.dll</code> on linux.</p>
 
       <div>
         <a target="_blank" href="https://github.com/nfdi4plants/arcCommander-docs/blob/main/src/docs/index.md" style="margin-left: auto; display: block; width: 130px;">
